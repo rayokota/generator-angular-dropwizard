@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId><%= packageName %></groupId>
+    <artifactId><%= _.slugify(baseName) %>-parent</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name><%= _.capitalize(baseName) %></name>
+    <description></description>
+    <url></url>
+
+    <modules>
+        <module><%= _.slugify(baseName) %>-api</module>
+        <module><%= _.slugify(baseName) %>-client</module>
+        <module><%= _.slugify(baseName) %>-service</module>
+    </modules>
+
+    <properties>
+        <dropwizard.version>0.6.2</dropwizard.version>
+        <hibernate.version>4.2.8.Final</hibernate.version>
+        <jackson.version>2.3.0</jackson.version>
+        <powermock.version>1.5.2</powermock.version>
+    </properties>
+
+    <!-- STOPPED HERE -->
+    <dependencies>
+        <dependency>
+            <groupId>com.yammer.dropwizard</groupId>
+            <artifactId>dropwizard-testing</artifactId>
+            <version><%= _.unescape('\$\{dropwizard.version}')%></version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-module-junit4</artifactId>
+            <version><%= _.unescape('\$\{powermock.version}')%></version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.powermock</groupId>
+            <artifactId>powermock-api-mockito</artifactId>
+            <version><%= _.unescape('\$\{powermock.version}')%></version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>sonatype-releases</id>
+            <name>Sonatype Releases Repository</name>
+            <url>http://oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <effort>Max</effort>
+                    <threshold>Default</threshold>
+                    <xmlOutput>true</xmlOutput>
+                    <excludeFilterFile><%= _.unescape('\$\{basedir}')%>/../findbugs-exclude.xml</excludeFilterFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

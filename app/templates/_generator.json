@@ -1,0 +1,6 @@
+{
+  "baseName": "<%= baseName %>"
+  "packageName": "<%= packageName %>"
+  "entities": [
+  ]
+}
