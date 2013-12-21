@@ -42,8 +42,8 @@ public class <%= _.capitalize(baseName) %>Service extends Service<<%= _.capitali
     @Override
     public void run(<%= _.capitalize(baseName) %>Configuration configuration,
                     Environment environment) throws Exception {
-        final SessionFactory sessionFactory = hibernateBundle.getSessionFactory();
         /*
+        final SessionFactory sessionFactory = hibernateBundle.getSessionFactory();
         environment.addResource(new MessageResource(
                 new MessageDAO(sessionFactory,
                         messageReferenceDAO,

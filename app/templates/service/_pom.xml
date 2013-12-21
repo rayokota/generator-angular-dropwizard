@@ -61,9 +61,9 @@
                         <argument>-noverify</argument>
                         <argument>-classpath</argument>
                         <classpath/>
-                        <argument>com.yammer.zeus.ZeusService</argument>
+                        <argument><%= packageName %>.<%= _.capitalize(baseName) %>Service</argument>
                         <argument>server</argument>
-                        <argument>zeus.yml</argument>
+                        <argument><%= baseName %>.yml</argument>
                     </arguments>
                 </configuration>
             </plugin>
