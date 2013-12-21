@@ -34,8 +34,9 @@ public class <%= _.capitalize(baseName) %>Service extends Service<<%= _.capitali
 
     @Override
     public void initialize(Bootstrap<<%= _.capitalize(baseName)  %>Configuration> bootstrap) {
+        bootstrap.setName("<%= baseName %>");
+        bootstrap.addBundle(new AssetsBundle("/assets/app/", "/", "index.html"));
         bootstrap.addBundle(hibernateBundle);
-        bootstrap.addBundle(new AssetsBundle());
     }
 
     @Override

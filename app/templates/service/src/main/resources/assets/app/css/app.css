@@ -1,0 +1,14 @@
+body {
+  padding: 10px;
+  background-color: #ECF0F1;
+}
+
+.navbar-inverse .brand {
+  border-right: none;
+}
+
+/* 'create' icon media query padding */
+.navbar .nav > li > a,
+.navbar .nav > li > a:hover {
+  padding: 16px 20px 15px;
+}

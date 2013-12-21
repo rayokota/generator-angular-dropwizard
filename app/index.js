@@ -89,7 +89,30 @@ AngularDropwizardGenerator.prototype.app = function app() {
   this.template('service/src/main/java/package/config/_AppConfiguration.java', serviceConfigDir + _s.capitalize(this.baseName) + 'Configuration.java');
 
   var resourceDir = serviceDir + 'src/main/resources/';
+  var assetsDir = resourceDir + 'assets/';
+  var assetsAppDir = assetsDir + 'app/';
+  var assetsAppCssDir = assetsAppDir + 'css/';
+  var assetsAppJsDir = assetsAppDir + 'js/';
+  var assetsAppViewDir = assetsAppDir + 'views/';
+  var assetsTestDir = assetsDir + 'test/';
+  var assetsTestConfigDir = assetsTestDir + 'config/';
+  var assetsTestE2EDir = assetsTestDir + 'e2e/';
+  var assetsTestUnitDir = assetsTestDir + 'unit/';
   this.mkdir(resourceDir);
+  this.mkdir(assetsDir);
+  this.mkdir(assetsAppDir);
+  this.mkdir(assetsAppCssDir);
+  this.mkdir(assetsAppJsDir);
+  this.mkdir(assetsAppViewDir);
+  this.mkdir(assetsTestDir);
+  this.mkdir(assetsTestE2EDir);
+  this.mkdir(assetsTestUnitDir);
+  this.template('service/src/main/resources/assets/app/_index.html', assetsAppDir + 'index.html');
+  this.copy('service/src/main/resources/assets/app/css/app.css', assetsAppCssDir + 'app.css');
+  this.template('service/src/main/resources/assets/app/js/_app.js', assetsAppJsDir + 'app.js');
+  this.template('service/src/main/resources/assets/app/js/home/_home-controller.js', assetsAppJsDir + 'home/home-controller.js');
+  this.template('service/src/main/resources/assets/app/views/home/_home.html', assetsAppViewDir + 'home/home.html');
+
   /*
   var defer = Q.defer();
   asciify(this.baseName, defer.resolve);
@@ -99,7 +122,6 @@ AngularDropwizardGenerator.prototype.app = function app() {
   console.log("** ban " + this.banner);
   this.template('service/src/main/resources/_banner.txt', resourceDir + 'banner.txt');
   */
-
 };
 
 AngularDropwizardGenerator.prototype.projectfiles = function projectfiles() {

@@ -30,7 +30,7 @@ module.exports = function (grunt) {
           '<%%= yeoman.app %>/app/*.html',
           '<%%= yeoman.app %>/app/css/**/*',
           '<%%= yeoman.app %>/app/js/**/*',
-          '<%%= yeoman.app %>/app/partials/**/*'
+          '<%%= yeoman.app %>/app/views/**/*'
         ],
         //tasks: ['sync:dist']
       }
