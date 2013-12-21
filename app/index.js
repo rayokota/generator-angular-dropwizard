@@ -2,6 +2,7 @@
 var util = require('util'),
     path = require('path'),
     yeoman = require('yeoman-generator'),
+    _ = require('lodash'),
     _s = require('underscore.string'),
     Q = require('q'),
     asciify = require('asciify');

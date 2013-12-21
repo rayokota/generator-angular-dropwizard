@@ -1,6 +1,6 @@
 {
-  "baseName": "<%= baseName %>"
-  "packageName": "<%= packageName %>"
+  "baseName": "<%= baseName %>",
+  "packageName": "<%= packageName %>",
   "entities": [
   ]
 }

@@ -1,0 +1,17 @@
+{
+  "baseName": "<%= baseName %>",
+  "packageName": "<%= packageName %>",
+  "entities": [<% var delim = ''; _.each(entities, function(entity) { %>
+  <%= delim %>{
+    "name": "<%= entity.name %>",
+    "attrs": [<% var delim2 = ''; _.each(entity.attrs, function(attr) { %>
+      <%= delim2 %>{
+        "attrName": "<%= attr.attrName %>",
+        "attrType": "<%= attr.attrType %>"
+      }
+      <% delim2 = ','; }); %>
+    ]
+  }
+  <% delim = ','; }); %>
+  ]
+}
