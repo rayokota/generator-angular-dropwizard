@@ -3,7 +3,8 @@ var util = require('util'),
     yeoman = require('yeoman-generator'),
     fs = require('fs'),
     _ = require('lodash'),
-    _s = require('underscore.string');
+    _s = require('underscore.string'),
+    pluralize = require('pluralize');
 
 var EntityGenerator = module.exports = function EntityGenerator(args, options, config) {
   // By calling `NamedBase` here, we get the argument to the subgenerator call
@@ -38,6 +39,7 @@ EntityGenerator.prototype.askFor = function askFor() {
     type: 'list',
     name: 'attrType',
     message: 'What is the type of the attribute?',
+    //choices: ['String', 'int', 'long', 'boolean', 'DateTime'],
     choices: ['String', 'byte', 'short', 'int', 'long', 'float', 'double', 'boolean', 'DateTime'],
     default: 'String'
   },
@@ -63,6 +65,7 @@ EntityGenerator.prototype.askFor = function askFor() {
 EntityGenerator.prototype.files = function files() {
   _.each(this.attrs,  function(num) { console.log('' + num.attrName + ' ' + num.attrType + '\n'); });
 
+  this.pluralName = pluralize(this.name);
   this.baseName = this.generatorConfig.baseName;
   this.packageName = this.generatorConfig.packageName;
   this.entities = this.generatorConfig.entities;
@@ -73,5 +76,9 @@ EntityGenerator.prototype.files = function files() {
   var serviceDir = this.baseName + '-service/';
   var serviceJavaDir = serviceDir + 'src/main/java/' + packageFolder + '/';
   var serviceModelDir = serviceJavaDir + 'model/';
+  var serviceResourcesDir = serviceJavaDir + 'resources/';
+  var serviceStoreDir = serviceJavaDir + 'store/';
   this.template('src/main/java/package/model/_Entity.java', serviceModelDir + _s.capitalize(this.name) + '.java');
+  this.template('src/main/java/package/resources/_EntityResource.java', serviceResourcesDir + _s.capitalize(this.name) + 'Resource.java');
+  this.template('src/main/java/package/store/_EntityDAO.java', serviceStoreDir + _s.capitalize(this.name) + 'DAO.java');
 };
