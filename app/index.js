@@ -20,7 +20,6 @@ var AngularDropwizardGenerator = module.exports = function AngularDropwizardGene
 util.inherits(AngularDropwizardGenerator, yeoman.generators.Base);
 
 AngularDropwizardGenerator.prototype.askFor = function askFor() {
-  var cb = this.async();
 
   console.log('\n' +
     '+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+\n' +
@@ -50,6 +49,7 @@ AngularDropwizardGenerator.prototype.askFor = function askFor() {
 };
 
 AngularDropwizardGenerator.prototype.app = function app() {
+  var cb = this.async();
 
   this.template('_generator.json', 'generator.json');
   this.template('_package.json', 'package.json');
@@ -115,11 +115,25 @@ AngularDropwizardGenerator.prototype.app = function app() {
   this.template('service/src/main/resources/assets/app/views/home/_home.html', assetsAppViewDir + 'home/home.html');
 
   /*
+  var cb = this.async();
+  asciify(this.baseName, function(err, res) {
+    this.banner = res;
+    console.log(res);
+
+    cb();
+  }.bind(this));
+  
+  console.log("** ban " + this.banner);
+  this.template('service/src/main/resources/_banner.txt', resourceDir + 'banner.txt');
+  */
+
+  /*
   var defer = Q.defer();
   asciify(this.baseName, defer.resolve);
   defer.promise.then(function(err, res) { 
+    this.banner = res;
     console.log(res);
-  }.bind(this));
+  }.bind(this)).done();
   console.log("** ban " + this.banner);
   this.template('service/src/main/resources/_banner.txt', resourceDir + 'banner.txt');
   */
