@@ -45,14 +45,20 @@ EntityGenerator.prototype.askFor = function askFor() {
   },
   {
     type: 'confirm',
+    name: 'required',
+    message: 'Is the attribute required to have a value?',
+    default: true
+  },
+  {
+    type: 'confirm',
     name: 'again',
     message: 'Would you like to enter another attribute?',
-    default: 'false'
+    default: true
   }];
 
   this.prompt(prompts, function (props) {
     this.attrs = this.attrs || [];
-    this.attrs.push({ attrName: props.attrName, attrType: props.attrType });
+    this.attrs.push({ attrName: props.attrName, attrType: props.attrType, required: props.required });
 
     if (props.again) {
       this.askFor();
