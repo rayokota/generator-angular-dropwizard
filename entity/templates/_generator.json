@@ -8,6 +8,7 @@
       <%= delim2 %>{
         "attrName": "<%= attr.attrName %>",
         "attrType": "<%= attr.attrType %>"
+        "required": "<%= attr.required %>"
       }
       <% delim2 = ','; }); %>
     ]

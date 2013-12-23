@@ -25,7 +25,7 @@
                         <div class="form-group">
                             <label><%= attr.attrName %>:</label>
                             <input type="text" class="form-control" name="<%= attr.attrName %>"
-                                   ng-model="<%= name %>.<%= attr.attrName %>" required>
+                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>">
                         </div>
                         <% }); %>
 

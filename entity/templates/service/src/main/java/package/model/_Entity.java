@@ -1,7 +1,8 @@
 package <%= packageName %>.model;
 
-import javax.persistence.*;
 import java.util.Objects;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import org.joda.time.DateTime;
 
 @Entity
@@ -13,6 +14,7 @@ public class <%= _.capitalize(name) %> {
     private long id;
 
     <% _.each(attrs, function(attr) { %>
+    <% if (attr.required) { %>@NotNull<% }; %>
     @Column(name = "<%= attr.attrName %>")
     private <%= attr.attrType %> <%= attr.attrName %>;
     <% }); %>
