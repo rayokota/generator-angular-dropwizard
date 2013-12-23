@@ -26,7 +26,7 @@ angular.module('<%= baseName %>')
       $scope.save = function() {
         <%= _.capitalize(name) %>.save($scope.<%= name %>,
             function () {
-              $scope.<%= pluralName %> = <%= _.capitalize(name) %>.query();
+              $scope.<%= pluralize(name) %> = <%= _.capitalize(name) %>.query();
               $scope.clear();
             });
       };

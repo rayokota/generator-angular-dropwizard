@@ -18,7 +18,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/<%= pluralName %>")
+@Path("/<%= pluralize(name) %>")
 public class <%= _.capitalize(name) %>Resource {
 
     private static final Logger LOG = LoggerFactory.getLogger(<%= _.capitalize(name) %>Resource.class);

@@ -5,6 +5,7 @@ var util = require('util'),
     _ = require('lodash'),
     _s = require('underscore.string'),
     Q = require('q'),
+    pluralize = require('pluralize'),
     asciify = require('asciify');
 
 var AngularDropwizardGenerator = module.exports = function AngularDropwizardGenerator(args, options, config) {
@@ -51,6 +52,8 @@ AngularDropwizardGenerator.prototype.askFor = function askFor() {
 };
 
 AngularDropwizardGenerator.prototype.app = function app() {
+
+  this.entities = [];
 
   this.template('_generator.json', 'generator.json');
   this.template('_package.json', 'package.json');

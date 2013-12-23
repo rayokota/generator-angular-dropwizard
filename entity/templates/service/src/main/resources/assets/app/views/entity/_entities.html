@@ -1,6 +1,6 @@
 <div>
 
-    <h2><%= _.capitalize(pluralName) %></h2>
+    <h2><%= _.capitalize(pluralize(name)) %></h2>
 
     <script type = "text/ng-template" id="<%= name %>-save.html">
         <div class="modal-dialog">
@@ -55,7 +55,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="<%= name %> in <%= pluralName %>">
+            <tr ng-repeat="<%= name %> in <%= pluralize(name) %>">
                 <td>{{<%= name %>.id}}</td>
                 <% _.each(attrs, function(attr) { %>
                 <td>{{<%= name %>.<%= attr.attrName %>}}</td>

@@ -27,6 +27,8 @@ public class <%= _.capitalize(baseName) %>Service extends Service<<%= _.capitali
     }
 
     private final HibernateBundle<<%= _.capitalize(baseName) %>Configuration> hibernateBundle = new HibernateBundle<<%= _.capitalize(baseName) %>Configuration>(
+            <% _.each(entities, function(entity) { %>
+            <%= _.capitalize(entity.name) %>.class,<% }); %>
             Void.class
         ) {
         @Override
@@ -45,16 +47,8 @@ public class <%= _.capitalize(baseName) %>Service extends Service<<%= _.capitali
     @Override
     public void run(<%= _.capitalize(baseName) %>Configuration configuration,
                     Environment environment) throws Exception {
-        /*
-        final SessionFactory sessionFactory = hibernateBundle.getSessionFactory();
-        environment.addResource(new MessageResource(
-                new MessageDAO(sessionFactory,
-                        messageReferenceDAO,
-                        networkDAO,
-                        subscriptionDAO,
-                        userDAO,
-                        configuration.getEnableAlgoFeed()),
-                manager));
-        */
+        <% _.each(entities, function(entity) { %>
+        environment.addResource(new <%= _.capitalize(entity.name) %>Resource(
+            new <%= _.capitalize(entity.name) %>DAO(hibernateBundle.getSessionFactory())));<% }); %>
     }
 }

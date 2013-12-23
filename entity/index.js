@@ -39,8 +39,8 @@ EntityGenerator.prototype.askFor = function askFor() {
     type: 'list',
     name: 'attrType',
     message: 'What is the type of the attribute?',
-    //choices: ['String', 'int', 'long', 'boolean', 'DateTime'],
-    choices: ['String', 'byte', 'short', 'int', 'long', 'float', 'double', 'boolean', 'DateTime'],
+    choices: ['String', 'int', 'long', 'float', 'double', 'boolean', 'DateTime'],
+    //choices: ['String', 'byte', 'short', 'int', 'long', 'float', 'double', 'boolean', 'DateTime'],
     default: 'String'
   },
   {
@@ -63,9 +63,8 @@ EntityGenerator.prototype.askFor = function askFor() {
 };
 
 EntityGenerator.prototype.files = function files() {
-  _.each(this.attrs,  function(num) { console.log('' + num.attrName + ' ' + num.attrType + '\n'); });
 
-  this.pluralName = pluralize(this.name);
+  this.pluralize = pluralize;
   this.baseName = this.generatorConfig.baseName;
   this.packageName = this.generatorConfig.packageName;
   this.entities = this.generatorConfig.entities;
@@ -78,6 +77,12 @@ EntityGenerator.prototype.files = function files() {
   var serviceModelDir = serviceJavaDir + 'model/';
   var serviceResourcesDir = serviceJavaDir + 'resources/';
   var serviceStoreDir = serviceJavaDir + 'store/';
+  var resourceDir = serviceDir + 'src/main/resources/';
+  var assetsDir = resourceDir + 'assets/';
+  var assetsAppDir = assetsDir + 'app/';
+  this.template('../../app/templates/service/src/main/java/package/_AppService.java', serviceJavaDir + _s.capitalize(this.baseName) + 'Service.java');
+  this.template('../../app/templates/service/src/main/resources/assets/app/_index.html', assetsAppDir + 'index.html');
+
   this.template('service/src/main/java/package/model/_Entity.java', serviceModelDir + _s.capitalize(this.name) + '.java');
   this.template('service/src/main/java/package/resources/_EntityResource.java', serviceResourcesDir + _s.capitalize(this.name) + 'Resource.java');
   this.template('service/src/main/java/package/store/_EntityDAO.java', serviceStoreDir + _s.capitalize(this.name) + 'DAO.java');
@@ -94,5 +99,5 @@ EntityGenerator.prototype.files = function files() {
   this.template('service/src/main/resources/assets/app/js/entity/_entity-controller.js', assetsEntityJsDir + this.name + '-controller.js');
   this.template('service/src/main/resources/assets/app/js/entity/_entity-router.js', assetsEntityJsDir + this.name + '-router.js');
   this.template('service/src/main/resources/assets/app/js/entity/_entity-service.js', assetsEntityJsDir + this.name + '-service.js');
-  this.template('service/src/main/resources/assets/app/views/entity/_entities.html', assetsEntityViewDir + this.pluralName + '.html');
+  this.template('service/src/main/resources/assets/app/views/entity/_entities.html', assetsEntityViewDir + pluralize(this.name) + '.html');
 };
