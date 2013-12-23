@@ -54,6 +54,8 @@ database:
 # HTTP-specific options.
 http:
 
+  rootPath: /<%= baseName %>/*  # Default is /*
+
   # The port on which the HTTP server listens for service requests.
   port: 8080
 
@@ -146,9 +148,9 @@ http:
       # The file to which statements will be logged. When the log file reaches the maximum size, the
       # file will be renamed example.log.1, example.log will be truncated, and new statements written
       # to it.
-      currentLogFilename: /var/log/<%= service_name %>/request.log
+      currentLogFilename: /var/log/<%= baseName %>/request.log
 
-      archivedLogFilenamePattern: /var/log/<%= service_name %>/request-%d.log
+      archivedLogFilenamePattern: /var/log/<%= baseName %>/request-%d.log
 
       # The maximum number of log files to retain.
       archivedFileCount: 2
@@ -198,9 +200,9 @@ logging:
     # The file to which statements will be logged. When the log file reaches the maximum size, the
     # file will be renamed example.log.1, example.log will be truncated, and new statements written
     # to it.
-    currentLogFilename: /var/log/<%= service_name %>/<%= service_name %>.log
+    currentLogFilename: /var/log/<%= baseName %>/<%= baseName %>.log
 
-    archivedLogFilenamePattern: /var/log/<%= service_name %>/<%= service_name %>-%d.log
+    archivedLogFilenamePattern: /var/log/<%= baseName %>/<%= baseName %>-%d.log
 
       # The maximum number of log files to retain.
     archivedFileCount: 7

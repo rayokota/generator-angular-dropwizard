@@ -2,19 +2,15 @@
 
     <h2><%= _.capitalize(pluralName) %></h2>
 
-    <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#save<%= _.capitalize(name) %>Modal">
-        <span class="glyphicon glyphicon-flash"></span> Create a new <%= _.capitalize(name) %>
-    </button>
-    <div class="modal fade" id="save<%= _.capitalize(name) %>Modal" tabindex="-1" role="dialog" aria-labelledby="my<%= _.capitalize(name) %>Label"
-         aria-hidden="true">
+    <script type = "text/ng-template" id="<%= name %>-save.html">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form name="form" role="form" novalidate
-                      class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-minlength"
-                      ng-submit="create()">
+                      class="ng-scope ng-invalid ng-invalid-required ng-dirty"
+                      ng-submit="ok()">
 
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                        <button type="button" class="close"
                                 ng-click="clear()">&times;</button>
                         <h4 class="modal-title" id="my<%= _.capitalize(name) %>Label">Create or edit a <%= _.capitalize(name) %></h4>
                     </div>
@@ -25,42 +21,45 @@
                                    ng-model="<%= name %>.id" readonly>
                         </div>
 
+                        <% _.each(attrs, function(attr) { %>
                         <div class="form-group">
-                            <label>Sample text attribute</label>
-                            <input type="text" class="form-control" name="test"
-                                   ng-model="<%= name %>.sampleTextAttribute" ng-minlength=1 ng-maxlength=50 required>
+                            <label><%= attr.attrName %>:</label>
+                            <input type="text" class="form-control" name="<%= attr.attrName %>"
+                                   ng-model="<%= name %>.<%= attr.attrName %>" required>
                         </div>
+                        <% }); %>
 
-                        <div class="form-group">
-                            <label>Sample date attribute</label>
-                            <input type="date" class="form-control" name="test"
-                                   ng-model="<%= name %>.sampleDateAttribute" required>
-                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clear()">Cancel
+                        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel
                         </button>
                         <button type="submit" ng-disabled="form.$invalid" class="btn btn-primary">Save</button>
                     </div>
                 </form>
             </div>
         </div>
-    </div>
+    </script>
+
+    <button class="btn btn-primary btn-lg" ng-click="create()">
+        <span class="glyphicon glyphicon-flash"></span> Create a new <%= _.capitalize(name) %>
+    </button>
 
     <div class="table-responsive">
         <table class="table table-striped">
             <thead>
             <tr>
                 <th>ID</th>
-                <th>Sample text</th>
-                <th>Sample date</th>
+                <% _.each(attrs, function(attr) { %>
+                <th><%= attr.attrName %></th>
+                <% }); %>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="<%= name %> in <%= pluralName %>s">
+            <tr ng-repeat="<%= name %> in <%= pluralName %>">
                 <td>{{<%= name %>.id}}</td>
-                <td>{{<%= name %>.sampleTextAttribute}}</td>
-                <td>{{<%= name %>.sampleDateAttribute}}</td>
+                <% _.each(attrs, function(attr) { %>
+                <td>{{<%= name %>.<%= attr.attrName %>}}</td>
+                <% }); %>
                 <td>
                     <button type="submit"
                             ng-click="update(<%= name %>.id)"

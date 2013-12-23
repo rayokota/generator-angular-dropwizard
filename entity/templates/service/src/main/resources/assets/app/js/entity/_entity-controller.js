@@ -1,23 +1,19 @@
 'use strict';
 
 angular.module('<%= baseName %>')
-  .controller('<%= _.capitalize(name) %>Controller', ['$scope', 'resolved<%= _.capitalize(name) %>', '<%= _.capitalize(name) %>',
-    function ($scope, resolved<%= _.capitalize(name) %>, <%= _.capitalize(name) %>) {
+  .controller('<%= _.capitalize(name) %>Controller', ['$scope', '$modal', 'resolved<%= _.capitalize(name) %>', '<%= _.capitalize(name) %>',
+    function ($scope, $modal, resolved<%= _.capitalize(name) %>, <%= _.capitalize(name) %>) {
 
       $scope.<%= name %>s = resolved<%= _.capitalize(name) %>;
 
       $scope.create = function () {
-        <%= _.capitalize(name) %>.save($scope.<%= name %>,
-          function () {
-            $scope.<%= name %>s = <%= _.capitalize(name) %>.query();
-            $('#save<%= _.capitalize(name) %>Modal').modal('hide');
-            $scope.clear();
-          });
+        $scope.clear();
+        $scope.open();
       };
 
-      $scope.update = function (id) {
+      $scope.update = function(id) {
         $scope.<%= name %> = <%= _.capitalize(name) %>.get({id: id});
-        $('#save<%= _.capitalize(name) %>Modal').modal('show');
+        $scope.open();
       };
 
       $scope.delete = function (id) {
@@ -27,12 +23,50 @@ angular.module('<%= baseName %>')
           });
       };
 
+      $scope.save = function() {
+        <%= _.capitalize(name) %>.save($scope.<%= name %>,
+            function () {
+              $scope.<%= pluralName %> = <%= _.capitalize(name) %>.query();
+              $scope.clear();
+            });
+      };
+
       $scope.clear = function () {
         $scope.<%= name %> = {
           <% _.each(attrs, function(attr) { %>
           "<%= attr.attrName %>": "",
           <% }); %>
-          id: ""
+          "id": ""
         };
       };
+
+      $scope.open = function() {
+        var <%= name %>Save = $modal.open({
+          templateUrl: '<%= name %>-save.html',
+          controller: <%= _.capitalize(name) %>SaveController,
+          resolve: {
+            <%= name %>: function() {
+              return $scope.<%= name %>;
+            }
+          }
+        });
+
+        <%= name %>Save.result.then(function (entity) {
+          $scope.<%= name %> = entity;
+          $scope.save();
+        });
+      };
     }]);
+
+var <%= _.capitalize(name) %>SaveController =
+  function($scope, $modalInstance, <%= name %>) {
+    $scope.<%= name %> = <%= name %>;
+
+    $scope.ok = function () {
+      $modalInstance.close($scope.<%= name %>);
+    };
+
+    $scope.cancel = function() {
+      $modalInstance.dismiss('cancel');
+    };
+  };

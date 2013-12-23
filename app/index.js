@@ -21,6 +21,8 @@ util.inherits(AngularDropwizardGenerator, yeoman.generators.Base);
 
 AngularDropwizardGenerator.prototype.askFor = function askFor() {
 
+  var cb = this.async();
+
   console.log('\n' +
     '+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+-+ +-+-+-+-+-+-+-+-+-+\n' +
     '|a|n|g|u|l|a|r| |d|r|o|p|w|i|z|a|r|d| |g|e|n|e|r|a|t|o|r|\n' +
@@ -49,7 +51,6 @@ AngularDropwizardGenerator.prototype.askFor = function askFor() {
 };
 
 AngularDropwizardGenerator.prototype.app = function app() {
-  var cb = this.async();
 
   this.template('_generator.json', 'generator.json');
   this.template('_package.json', 'package.json');
@@ -84,7 +85,7 @@ AngularDropwizardGenerator.prototype.app = function app() {
   this.mkdir(serviceResourcesDir);
   this.mkdir(serviceStoreDir);
   this.template('service/_pom.xml', serviceDir + 'pom.xml');
-  this.copy('service/app.yml', serviceDir + this.baseName + '.yml');
+  this.template('service/_app.yml', serviceDir + this.baseName + '.yml');
   this.copy('service/spring_loaded/springloaded-1.1.4.jar', serviceDir + 'spring_loaded/springloaded-1.1.4.jar');
   this.template('service/src/main/java/package/_AppService.java', serviceJavaDir + _s.capitalize(this.baseName) + 'Service.java');
   this.template('service/src/main/java/package/config/_AppConfiguration.java', serviceConfigDir + _s.capitalize(this.baseName) + 'Configuration.java');

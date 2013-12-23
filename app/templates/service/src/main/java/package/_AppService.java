@@ -1,6 +1,9 @@
 package <%= packageName %>;
 
 import <%= packageName %>.config.*;
+import <%= packageName %>.model.*;
+import <%= packageName %>.resources.*;
+import <%= packageName %>.store.*;
 import com.google.common.base.Optional;
 import com.yammer.dropwizard.assets.AssetsBundle;
 import com.yammer.dropwizard.config.Bootstrap;
