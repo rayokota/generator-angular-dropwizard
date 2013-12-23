@@ -64,11 +64,12 @@ EntityGenerator.prototype.askFor = function askFor() {
 
 EntityGenerator.prototype.files = function files() {
 
-  this.pluralize = pluralize;
   this.baseName = this.generatorConfig.baseName;
   this.packageName = this.generatorConfig.packageName;
   this.entities = this.generatorConfig.entities;
   this.entities.push({ name: this.name, attrs: this.attrs});
+  this.pluralize = pluralize;
+
   var packageFolder = this.packageName.replace(/\./g, '/');
   this.template('_generator.json', 'generator.json');
 
