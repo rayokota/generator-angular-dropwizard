@@ -3,7 +3,8 @@ package <%= packageName %>.model;
 import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 @Entity
 @Table(name = "<%= name %>")
