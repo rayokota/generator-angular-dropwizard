@@ -4,7 +4,6 @@ var util = require('util'),
     yeoman = require('yeoman-generator'),
     _ = require('lodash'),
     _s = require('underscore.string'),
-    Q = require('q'),
     pluralize = require('pluralize'),
     asciify = require('asciify');
 
@@ -124,29 +123,14 @@ AngularDropwizardGenerator.prototype.app = function app() {
   this.template('service/src/main/resources/assets/app/js/home/_home-controller.js', assetsAppJsDir + 'home/home-controller.js');
   this.template('service/src/main/resources/assets/app/views/home/_home.html', assetsAppViewDir + 'home/home.html');
 
-  /*
   var cb = this.async();
+
   asciify(this.baseName, function (err, res) {
     this.banner = res;
-    console.log(res);
+    this.template('service/src/main/resources/_banner.txt', resourceDir + 'banner.txt');
 
     cb();
   }.bind(this));
-  
-  console.log("** ban " + this.banner);
-  this.template('service/src/main/resources/_banner.txt', resourceDir + 'banner.txt');
-  */
-
-  /*
-  var defer = Q.defer();
-  asciify(this.baseName, defer.resolve);
-  defer.promise.then(function (err, res) { 
-    this.banner = res;
-    console.log(res);
-  }.bind(this)).done();
-  console.log("** ban " + this.banner);
-  this.template('service/src/main/resources/_banner.txt', resourceDir + 'banner.txt');
-  */
 };
 
 AngularDropwizardGenerator.prototype.projectfiles = function projectfiles() {

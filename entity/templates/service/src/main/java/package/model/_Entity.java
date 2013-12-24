@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import org.joda.time.LocalDate;
 
 @Entity
-@Table(name = "<%= name %>")
+@Table(name = "<%= pluralize(name) %>")
 public class <%= _.capitalize(name) %> {
 
     @Id

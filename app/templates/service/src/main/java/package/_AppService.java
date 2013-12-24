@@ -1,9 +1,9 @@
 package <%= packageName %>;
 
 import <%= packageName %>.config.*;
-import <%= packageName %>.model.*;
+<% if (entities.length > 0) { %>import <%= packageName %>.model.*;
 import <%= packageName %>.resources.*;
-import <%= packageName %>.store.*;
+import <%= packageName %>.store.*;<% } %>
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.base.Optional;
 import com.yammer.dropwizard.assets.AssetsBundle;
