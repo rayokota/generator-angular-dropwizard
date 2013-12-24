@@ -62,6 +62,10 @@ var <%= _.capitalize(name) %>SaveController =
   function($scope, $modalInstance, <%= name %>) {
     $scope.<%= name %> = <%= name %>;
 
+    $scope.dateOptions = {
+      dateFormat: 'yy-mm-dd'
+    };
+
     $scope.ok = function () {
       $modalInstance.close($scope.<%= name %>);
     };

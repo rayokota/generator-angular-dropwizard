@@ -4,12 +4,14 @@ import <%= packageName %>.config.*;
 import <%= packageName %>.model.*;
 import <%= packageName %>.resources.*;
 import <%= packageName %>.store.*;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.base.Optional;
 import com.yammer.dropwizard.assets.AssetsBundle;
 import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
 import com.yammer.dropwizard.db.DatabaseConfiguration;
 import com.yammer.dropwizard.hibernate.HibernateBundle;
+import com.yammer.dropwizard.json.ObjectMapperFactory;
 import com.yammer.dropwizard.Service;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -42,6 +44,8 @@ public class <%= _.capitalize(baseName) %>Service extends Service<<%= _.capitali
         bootstrap.setName("<%= baseName %>");
         bootstrap.addBundle(new AssetsBundle("/assets/app/", "/", "index.html"));
         bootstrap.addBundle(hibernateBundle);
+        ObjectMapperFactory mapperFactory = bootstrap.getObjectMapperFactory();
+        mapperFactory.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
     @Override

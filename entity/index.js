@@ -39,7 +39,7 @@ EntityGenerator.prototype.askFor = function askFor() {
     type: 'list',
     name: 'attrType',
     message: 'What is the type of the attribute?',
-    choices: ['String', 'Integer', 'Long', 'Float', 'Double', 'Boolean', 'Date', 'Time', 'Enum'],
+    choices: ['String', 'Integer', 'Long', 'Float', 'Double', 'Boolean', 'Date', 'Enum'],
     default: 'String'
   },
   {
@@ -58,7 +58,7 @@ EntityGenerator.prototype.askFor = function askFor() {
   this.prompt(prompts, function (props) {
     this.attrs = this.attrs || [];
     var attrType = props.attrType;
-    if (attrType === 'Date' || attrType === 'Time') {
+    if (attrType === 'Date') {
       attrType = 'Local' + attrType;
     }
     this.attrs.push({ attrName: props.attrName, attrType: attrType, required: props.required });

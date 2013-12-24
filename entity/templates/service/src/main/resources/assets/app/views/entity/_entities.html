@@ -24,13 +24,21 @@
                         <% _.each(attrs, function(attr) { %>
                         <div class="form-group">
                             <label><%= attr.attrName %>:</label>
-                            <input <% if (attr.attrType === "String") { %>type="text"<% 
-                                     } else if (attr.attrType === "Integer" || attr.attrType === "Long" ||
-                                       attr.attrType === "Float" || attr.attrType === "Double") { %>type="number"<%
-                                     } else if (attr.attrType === "Boolean") { %>type="checkbox"<% } %>
-                                   <% if (attr.attrType === "Float" || attr.attrType == "Double") { %>step="any"<% } %>
-                                   class="form-control" name="<%= attr.attrName %>"
-                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>">
+                            <% if (attr.attrType === "String") { %>
+                            <input type="text" class="form-control" name="<%= attr.attrName %>"
+                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
+                               } else if (attr.attrType === "Integer" || attr.attrType === "Long") { %>
+                            <input type="number" class="form-control" name="<%= attr.attrName %>"
+                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
+                               } else if (attr.attrType === "Float" || attr.attrType === "Double") { %>
+                            <input type="number" step="any" class="form-control" name="<%= attr.attrName %>"
+                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
+                               } else if (attr.attrType === "Boolean") { %>
+                            <input type="checkbox" class="form-control" name="<%= attr.attrName %>"
+                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
+                               } else if (attr.attrType === "LocalDate") { %>
+                            <input type="text" class="form-control" ui-date="dateOptions" ui-date-format="yy-mm-dd" 
+                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><% } %>
                         </div>
                         <% }); %>
 
@@ -63,7 +71,7 @@
             <tr ng-repeat="<%= name %> in <%= pluralize(name) %>">
                 <td>{{<%= name %>.id}}</td>
                 <% _.each(attrs, function(attr) { %>
-                <td>{{<%= name %>.<%= attr.attrName %>}}</td>
+                <td>{{<%= name %>.<%= attr.attrName %> <% if (attr.attrType === 'LocalDate') { %> | date:'yyyy-MM-dd'<% } %>}}</td>
                 <% }); %>
                 <td>
                     <button type="submit"
