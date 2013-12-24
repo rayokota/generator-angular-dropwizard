@@ -54,6 +54,12 @@ AngularDropwizardGenerator.prototype.askFor = function askFor() {
 AngularDropwizardGenerator.prototype.app = function app() {
 
   this.entities = [];
+  this.generatorConfig = {
+    "baseName": this.baseName,
+    "packageName": this.packageName,
+    "entities": this.entities
+  };
+  this.generatorConfigStr = JSON.stringify(this.generatorConfig, null, '\t');
 
   this.template('_generator.json', 'generator.json');
   this.template('_package.json', 'package.json');
@@ -120,7 +126,7 @@ AngularDropwizardGenerator.prototype.app = function app() {
 
   /*
   var cb = this.async();
-  asciify(this.baseName, function(err, res) {
+  asciify(this.baseName, function (err, res) {
     this.banner = res;
     console.log(res);
 
@@ -134,7 +140,7 @@ AngularDropwizardGenerator.prototype.app = function app() {
   /*
   var defer = Q.defer();
   asciify(this.baseName, defer.resolve);
-  defer.promise.then(function(err, res) { 
+  defer.promise.then(function (err, res) { 
     this.banner = res;
     console.log(res);
   }.bind(this)).done();

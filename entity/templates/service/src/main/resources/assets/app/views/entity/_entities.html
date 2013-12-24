@@ -21,7 +21,7 @@
                                    ng-model="<%= name %>.id" readonly>
                         </div>
 
-                        <% _.each(attrs, function(attr) { %>
+                        <% _.each(attrs, function (attr) { %>
                         <div class="form-group">
                             <label><%= attr.attrName %>:</label>
                             <% if (attr.attrType === "String") { %>
@@ -38,7 +38,11 @@
                                    ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
                                } else if (attr.attrType === "LocalDate") { %>
                             <input type="text" class="form-control" ui-date="dateOptions" ui-date-format="yy-mm-dd" 
-                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><% } %>
+                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
+                               } else if (attr.attrType === "Enum") {
+                                 _.each(attr.enumValues, function (value) { %>
+                            <input type="radio" class="form-control" value="<%= value %>"
+                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/> <%= value %> <br/><% })} %>
                         </div>
                         <% }); %>
 
@@ -62,7 +66,7 @@
             <thead>
             <tr>
                 <th>ID</th>
-                <% _.each(attrs, function(attr) { %>
+                <% _.each(attrs, function (attr) { %>
                 <th><%= attr.attrName %></th>
                 <% }); %>
             </tr>
@@ -70,7 +74,7 @@
             <tbody>
             <tr ng-repeat="<%= name %> in <%= pluralize(name) %>">
                 <td>{{<%= name %>.id}}</td>
-                <% _.each(attrs, function(attr) { %>
+                <% _.each(attrs, function (attr) { %>
                 <td>{{<%= name %>.<%= attr.attrName %> <% if (attr.attrType === 'LocalDate') { %> | date:'yyyy-MM-dd'<% } %>}}</td>
                 <% }); %>
                 <td>

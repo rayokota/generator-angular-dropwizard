@@ -11,7 +11,7 @@ angular.module('<%= baseName %>')
         $scope.open();
       };
 
-      $scope.update = function(id) {
+      $scope.update = function (id) {
         $scope.<%= name %> = <%= _.capitalize(name) %>.get({id: id});
         $scope.open();
       };
@@ -23,7 +23,7 @@ angular.module('<%= baseName %>')
           });
       };
 
-      $scope.save = function() {
+      $scope.save = function () {
         <%= _.capitalize(name) %>.save($scope.<%= name %>,
             function () {
               $scope.<%= pluralize(name) %> = <%= _.capitalize(name) %>.query();
@@ -33,19 +33,19 @@ angular.module('<%= baseName %>')
 
       $scope.clear = function () {
         $scope.<%= name %> = {
-          <% _.each(attrs, function(attr) { %>
+          <% _.each(attrs, function (attr) { %>
           "<%= attr.attrName %>": "",
           <% }); %>
           "id": ""
         };
       };
 
-      $scope.open = function() {
+      $scope.open = function () {
         var <%= name %>Save = $modal.open({
           templateUrl: '<%= name %>-save.html',
           controller: <%= _.capitalize(name) %>SaveController,
           resolve: {
-            <%= name %>: function() {
+            <%= name %>: function () {
               return $scope.<%= name %>;
             }
           }
@@ -59,7 +59,7 @@ angular.module('<%= baseName %>')
     }]);
 
 var <%= _.capitalize(name) %>SaveController =
-  function($scope, $modalInstance, <%= name %>) {
+  function ($scope, $modalInstance, <%= name %>) {
     $scope.<%= name %> = <%= name %>;
 
     $scope.dateOptions = {
@@ -70,7 +70,7 @@ var <%= _.capitalize(name) %>SaveController =
       $modalInstance.close($scope.<%= name %>);
     };
 
-    $scope.cancel = function() {
+    $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     };
   };

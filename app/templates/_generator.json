@@ -1,6 +1,1 @@
-{
-  "baseName": "<%= baseName %>",
-  "packageName": "<%= packageName %>",
-  "entities": [
-  ]
-}
+<%= generatorConfigStr %>

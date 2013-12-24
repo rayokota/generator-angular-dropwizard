@@ -13,22 +13,23 @@ public class <%= _.capitalize(name) %> {
     @GeneratedValue
     private long id;
 
-    <% _.each(attrs, function(attr) { %>
+    <% _.each(attrs, function (attr) { %>
     <% if (attr.required) { %>@NotNull<% }; %>
     @Column(name = "<%= attr.attrName %>")
-    private <%= attr.attrType %> <%= attr.attrName %>;
+    <% if (attr.attrType == 'Enum') { %>@Enumerated(EnumType.STRING)<% } %>
+    private <% if (attr.attrType == 'Enum') { %><%= _.capitalize(attr.attrName) %><% } %><%= attr.attrType %> <%= attr.attrName %>;
     <% }); %>
 
     public long getId() {
         return id;
     }
 
-    <% _.each(attrs, function(attr) { %>
-    public <%= attr.attrType %> get<%= _.capitalize(attr.attrName) %>() {
+    <% _.each(attrs, function (attr) { %>
+    public <% if (attr.attrType === 'Enum') { %><%= _.capitalize(attr.attrName) %><% } %><%= attr.attrType %> get<%= _.capitalize(attr.attrName) %>() {
         return <%= attr.attrName %>;
     }
 
-    public void set<%= _.capitalize(attr.attrName) %>(<%= attr.attrType %> <%= attr.attrName %>) {
+    public void set<%= _.capitalize(attr.attrName) %>(<% if (attr.attrType == 'Enum') { %><%= _.capitalize(attr.attrName) %><% } %><%= attr.attrType %> <%= attr.attrName %>) {
         this.<%= attr.attrName %> = <%= attr.attrName %>;
     }
     <% }); %>

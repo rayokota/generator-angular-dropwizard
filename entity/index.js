@@ -43,6 +43,12 @@ EntityGenerator.prototype.askFor = function askFor() {
     default: 'String'
   },
   {
+    when: function (props) { return (/Enum/).test(props.attrType); },
+    type: 'input',
+    name: 'enumValues',
+    message: 'Enter an enumeration of values, separated by commas'
+  },
+  {
     type: 'confirm',
     name: 'required',
     message: 'Is the attribute required to have a value?',
@@ -61,7 +67,12 @@ EntityGenerator.prototype.askFor = function askFor() {
     if (attrType === 'Date') {
       attrType = 'Local' + attrType;
     }
-    this.attrs.push({ attrName: props.attrName, attrType: attrType, required: props.required });
+    this.attrs.push({ 
+      attrName: props.attrName, 
+      attrType: attrType, 
+      enumValues: props.enumValues ? props.enumValues.split(',') : [],
+      required: props.required 
+    });
 
     if (props.again) {
       this.askFor();
@@ -78,6 +89,7 @@ EntityGenerator.prototype.files = function files() {
   this.entities = this.generatorConfig.entities;
   this.entities.push({ name: this.name, attrs: this.attrs});
   this.pluralize = pluralize;
+  this.generatorConfigStr = JSON.stringify(this.generatorConfig, null, '\t');
 
   var packageFolder = this.packageName.replace(/\./g, '/');
   this.template('_generator.json', 'generator.json');
@@ -96,6 +108,12 @@ EntityGenerator.prototype.files = function files() {
   this.template('service/src/main/java/package/model/_Entity.java', serviceModelDir + _s.capitalize(this.name) + '.java');
   this.template('service/src/main/java/package/resources/_EntityResource.java', serviceResourcesDir + _s.capitalize(this.name) + 'Resource.java');
   this.template('service/src/main/java/package/store/_EntityDAO.java', serviceStoreDir + _s.capitalize(this.name) + 'DAO.java');
+  _.each(this.attrs, function (attr) {
+    if (attr.attrType === 'Enum') {
+      this.attr = attr;
+      this.template('service/src/main/java/package/model/_AttrEnum.java', serviceModelDir + _s.capitalize(attr.attrName) + 'Enum.java');
+    }
+  }.bind(this));
 
   var resourceDir = serviceDir + 'src/main/resources/';
   var assetsDir = resourceDir + 'assets/';

@@ -19,7 +19,7 @@
           <div class="container-fluid">
             <a class="brand" href="#"><%= _.capitalize(baseName) %></a>
             <ul class="nav">
-              <% _.each(entities, function(entity) { %>
+              <% _.each(entities, function (entity) { %>
               <li>
                 <a href="/#/<%= pluralize(entity.name) %>"><%= _.capitalize(pluralize(entity.name)) %></a>
               </li>
@@ -42,7 +42,7 @@
 
   <script src="js/app.js"></script>
   <script src="js/home/home-controller.js"></script>
-  <% _.each(entities, function(entity) { %>
+  <% _.each(entities, function (entity) { %>
   <script src="js/<%= entity.name %>/<%= entity.name %>-controller.js"></script>
   <script src="js/<%= entity.name %>/<%= entity.name %>-router.js"></script>
   <script src="js/<%= entity.name %>/<%= entity.name %>-service.js"></script>
