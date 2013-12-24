@@ -57,7 +57,7 @@ EntityGenerator.prototype.askFor = function askFor() {
   {
     type: 'confirm',
     name: 'again',
-    message: 'Would you like to enter another attribute?',
+    message: 'Would you like to enter another attribute or reenter a previous attribute?',
     default: true
   }];
 
@@ -67,6 +67,7 @@ EntityGenerator.prototype.askFor = function askFor() {
     if (attrType === 'Date') {
       attrType = 'Local' + attrType;
     }
+    this.attrs = _.reject(this.attrs, function (attr) { return attr.attrName === props.attrName; });
     this.attrs.push({ 
       attrName: props.attrName, 
       attrType: attrType, 
