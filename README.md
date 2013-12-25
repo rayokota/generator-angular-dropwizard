@@ -1,4 +1,4 @@
-# The Angular-Dropwizard Generator 
+# The Angular-Dropwizard generator 
 
 A [Yeoman](http://yeoman.io) generator for [AngularJS](http://angularjs.org) and [Dropwizard](http://dropwizard.codahale.com).
 
@@ -10,7 +10,7 @@ Install Yeoman:
 
     npm install -g yo
 
-Install The Angular-Dropwizard generator:
+Install the Angular-Dropwizard generator:
 
     npm install -g generator-angular-dropwizard
 
