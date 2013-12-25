@@ -40,7 +40,7 @@ You will be asked to specify methods for the resource, where each method has the
 
 - a name
 - a type (GET, POST, PUT, DELETE, HEAD)
-- a URI path template, such as "/users/{userId}/orders/{orderId}"
+- a URI path template, such as `/users/{userId}/orders/{orderId}`
 - for a POST method, an optional list of form parameters
 
 You can now invoke HTTP requests against your service, such as
@@ -61,7 +61,7 @@ You will be asked to specify attributes for the entity, where each attribute has
 - for an Enum type, a list of enumerated values
 - whether the attribute is required
 
-At this point a client-side AngularJS application is available by running
+A client-side AngularJS application will now be available by running
 
 	grunt server
 	
