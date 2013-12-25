@@ -28,12 +28,12 @@ util.inherits(ResourceGenerator, yeoman.generators.NamedBase);
 ResourceGenerator.prototype.askFor = function askFor() {
   var cb = this.async();
 
-  console.log('\nPlease specify a method:');
+  console.log('\nPlease specify a method for the resource:');
 
   var prompts = [{
     type: 'input',
     name: 'methodName',
-    message: 'What is the name of the methodName?',
+    message: 'What is the name of the method?',
     default: 'mymethod'
   },
   {
