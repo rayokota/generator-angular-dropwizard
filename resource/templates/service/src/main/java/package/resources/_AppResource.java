@@ -19,7 +19,7 @@ public class <%= _.capitalize(name) %>Resource {
     <% _.each(methods, function (method) { %>
     @Path("<%= method.methodPath %>")
     @<%= method.methodType %>
-    @Produces(MediaType.TEXT_PLAIN)
+    @Produces(MediaType.APPLICATION_JSON)
     @Timed 
     public String <%= method.methodName %>(
         <% var p1 = _.map(uriTemplateParts(method.methodPath), function (param) { return '@PathParam("' + param + '") String ' + param; });
