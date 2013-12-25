@@ -53,10 +53,12 @@ AngularDropwizardGenerator.prototype.askFor = function askFor() {
 AngularDropwizardGenerator.prototype.app = function app() {
 
   this.entities = [];
+  this.resources = [];
   this.generatorConfig = {
     "baseName": this.baseName,
     "packageName": this.packageName,
-    "entities": this.entities
+    "entities": this.entities,
+    "resources": this.resources
   };
   this.generatorConfigStr = JSON.stringify(this.generatorConfig, null, '\t');
 

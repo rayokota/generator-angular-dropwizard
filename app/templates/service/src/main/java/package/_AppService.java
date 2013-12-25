@@ -51,6 +51,8 @@ public class <%= _.capitalize(baseName) %>Service extends Service<<%= _.capitali
     @Override
     public void run(<%= _.capitalize(baseName) %>Configuration configuration,
                     Environment environment) throws Exception {
+        <% _.each(resources, function (resource) { %>
+        environment.addResource(new <%= _.capitalize(resource.name) %>Resource());<% }); %>
         <% _.each(entities, function (entity) { %>
         environment.addResource(new <%= _.capitalize(entity.name) %>Resource(
             new <%= _.capitalize(entity.name) %>DAO(hibernateBundle.getSessionFactory())));<% }); %>

@@ -90,6 +90,7 @@ EntityGenerator.prototype.files = function files() {
   this.entities = this.generatorConfig.entities;
   this.entities = _.reject(this.entities, function (entity) { return entity.name === this.name; }.bind(this));
   this.entities.push({ name: this.name, attrs: this.attrs});
+  this.resources = this.generatorConfig.resources;
   this.pluralize = pluralize;
   this.generatorConfig.entities = this.entities;
   this.generatorConfigStr = JSON.stringify(this.generatorConfig, null, '\t');
