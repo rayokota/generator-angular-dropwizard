@@ -50,7 +50,7 @@ You can now invoke HTTP requests against your service, such as
 
 ## Creating a persistent entity
 
-Generate the entity
+Generate the entity:
 
     yo angular-dropwizard:entity [myentity]
 
