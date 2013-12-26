@@ -1,9 +1,14 @@
 {
   "name": "generator-angular-dropwizard",
   "version": "0.1.0",
-  "description": "A generator for Yeoman",
+  "description": "A Yeoman generator for AngularJS + Dropwizard",
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "Java",
+    "Dropwizard",
+    "Hibernate",
+    "AngularJS",
+    "Twitter Bootstrap"
   ],
   "homepage": "https://github.com/rayokota/generator-angular-dropwizard",
   "bugs": "https://github.com/rayokota/generator-angular-dropwizard/issues",
