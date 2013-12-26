@@ -58,7 +58,10 @@ You will be asked to specify attributes for the entity, where each attribute has
 
 - a name
 - a type (String, Integer, Long, Float, Double, Boolean, Date, Enum)
-- for an Enum type, a list of enumerated values
+- for a String attribute, an optional minimum and maximum length
+- for a numeric attribute, an optional minimum and maximum value
+- for a Date attribute, an optional constraint to either past values or future values
+- for an Enum attribute, a list of enumerated values
 - whether the attribute is required
 
 A client-side AngularJS application will now be available by running
