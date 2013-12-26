@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-dropwizard",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A generator for Yeoman",
   "keywords": [
     "yeoman-generator"
@@ -8,7 +8,7 @@
   "homepage": "https://github.com/rayokota/generator-angular-dropwizard",
   "bugs": "https://github.com/rayokota/generator-angular-dropwizard/issues",
   "author": {
-    "name": "",
+    "name": "Robert Yokota",
     "email": "",
     "url": "https://github.com/rayokota"
   },
