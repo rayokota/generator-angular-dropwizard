@@ -16,7 +16,7 @@ Install the Angular-Dropwizard generator:
 
 ## Creating a Dropwizard service
 
-Generate the service:
+In a new directory, generate the service:
 
     yo angular-dropwizard
 
