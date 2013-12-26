@@ -43,6 +43,67 @@ EntityGenerator.prototype.askFor = function askFor() {
     default: 'String'
   },
   {
+    when: function (props) { return (/String/).test(props.attrType); },
+    type: 'input',
+    name: 'minLength',
+    message: 'Enter the minimum length for the String attribute, or hit enter:',
+    validate: function (input) {
+      if (input && isNaN(input)) {
+        return "Please enter a number.";
+      }
+      return true;
+    }
+  },
+  {
+    when: function (props) { return (/String/).test(props.attrType); },
+    type: 'input',
+    name: 'maxLength',
+    message: 'Enter the maximum length for the String attribute, or hit enter:',
+    validate: function (input) {
+      if (input && isNaN(input)) {
+        return "Please enter a number.";
+      }
+      return true;
+    }
+  },
+  {
+    when: function (props) { return (/Integer|Long|Float|Double/).test(props.attrType); },
+    type: 'input',
+    name: 'min',
+    message: 'Enter the minimum value for the numeric attribute, or hit enter:',
+    validate: function (input) {
+      if (input && isNaN(input)) {
+        return "Please enter a number.";
+      }
+      return true;
+    }
+  },
+  {
+    when: function (props) { return (/Integer|Long|Float|Double/).test(props.attrType); },
+    type: 'input',
+    name: 'max',
+    message: 'Enter the maximum value for the numeric attribute, or hit enter:',
+    validate: function (input) {
+      if (input && isNaN(input)) {
+        return "Please enter a number.";
+      }
+      return true;
+    }
+  },
+  {
+    when: function (props) { return (/Date/).test(props.attrType); },
+    type: 'list',
+    name: 'dateConstraint',
+    message: 'Constrain the date as follows:',
+    choices: ['None', 'Past dates only', 'Future dates only'],
+    filter: function (input) {
+      if (/Past/.test(input)) return 'Past';
+      if (/Future/.test(input)) return 'Future';
+      return '';
+    },
+    default: 'None'
+  },
+  {
     when: function (props) { return (/Enum/).test(props.attrType); },
     type: 'input',
     name: 'enumValues',
@@ -71,6 +132,11 @@ EntityGenerator.prototype.askFor = function askFor() {
     this.attrs.push({ 
       attrName: props.attrName, 
       attrType: attrType, 
+      minLength: props.minLength,
+      maxLength: props.maxLength,
+      min: props.min,
+      max: props.max,
+      dateConstraint: props.dateConstraint,
       enumValues: props.enumValues ? props.enumValues.split(',') : [],
       required: props.required 
     });

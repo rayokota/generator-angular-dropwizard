@@ -26,22 +26,31 @@
                             <label><%= attr.attrName %>:</label>
                             <% if (attr.attrType === "String") { %>
                             <input type="text" class="form-control" name="<%= attr.attrName %>"
-                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
+                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"
+                                   <% if (attr.minLength) { %>ng-minlength=<%= attr.minLength %> <% } %><% if (attr.maxLength) { %>ng-maxlength=<%= attr.maxLength %><% } %>/>
+                            <span class="error" ng-show="form.<%= attr.attrName %>.$error.minlength">Must be at least <%= attr.minLength %> characters.</span>
+                            <span class="error" ng-show="form.<%= attr.attrName %>.$error.maxlength">Must be at most <%= attr.maxLength %> characters.</span><%
                                } else if (attr.attrType === "Integer" || attr.attrType === "Long") { %>
                             <input type="number" class="form-control" name="<%= attr.attrName %>"
-                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
+                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"
+                                   <% if (attr.min) { %>min=<%= attr.min%> <% } %><% if (attr.max) { %>max=<%= attr.max %><% } %>/>
+                            <span class="error" ng-show="form.<%= attr.attrName %>.$error.min">Must be greater than or equal to <%= attr.min %>.</span>
+                            <span class="error" ng-show="form.<%= attr.attrName %>.$error.max">Must be less than or equal to <%= attr.max %>.</span><%
                                } else if (attr.attrType === "Float" || attr.attrType === "Double") { %>
                             <input type="number" step="any" class="form-control" name="<%= attr.attrName %>"
-                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
+                                   ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"
+                                   <% if (attr.min) { %>min=<%= attr.min%> <% } %><% if (attr.max) { %>max=<%= attr.max %><% } %>/>
+                            <span class="error" ng-show="form.<%= attr.attrName %>.$error.min">Must be greater than or equal to <%= attr.min %>.</span>
+                            <span class="error" ng-show="form.<%= attr.attrName %>.$error.max">Must be less than or equal to <%= attr.max %>.</span><%
                                } else if (attr.attrType === "Boolean") { %>
                             <input type="checkbox" class="form-control" name="<%= attr.attrName %>"
                                    ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
                                } else if (attr.attrType === "LocalDate") { %>
-                            <input type="text" class="form-control" ui-date="dateOptions" ui-date-format="yy-mm-dd" 
+                            <input type="text" class="form-control" name="<%= attr.attrName %>" ui-date="<%= attr.attrName %>DateOptions" ui-date-format="yy-mm-dd" 
                                    ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
                                } else if (attr.attrType === "Enum") {
                                  _.each(attr.enumValues, function (value) { %>
-                            <input type="radio" class="form-control" value="<%= value %>"
+                            <input type="radio" class="form-control" name="<%= attr.attrName %>" value="<%= value %>"
                                    ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/> <%= value %> <br/><% })} %>
                         </div>
                         <% }); %>

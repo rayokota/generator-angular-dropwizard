@@ -2,7 +2,7 @@ package <%= packageName %>.model;
 
 import java.util.Objects;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import org.joda.time.LocalDate;
 
 @Entity
@@ -15,7 +15,11 @@ public class <%= _.capitalize(name) %> {
 
     <% _.each(attrs, function (attr) { %>
     <% if (attr.required) { %>@NotNull<% }; %>
-    @Column(name = "<%= attr.attrName %>")
+    @Column(name = "<%= attr.attrName %>"<% if (attr.maxLength) { %>, length = <%= attr.maxLength %><% } %>)
+    <% var delim = ''; if (attr.minLength || attr.maxLength) { %>@Size(<% if (attr.minLength) { delim = ', '; %>min = <%= attr.minLength %><% }; if (attr.maxLength) { %><%= delim %>max = <%= attr.maxLength %><% } %>)<% } %>
+    <% if (attr.min) { %>@Min(value = <%= attr.min %>)<% } %>
+    <% if (attr.max) { %>@Max(value = <%= attr.max %>)<% } %>
+    <% if (attr.dateConstraint) { %>@<%= attr.dateConstraint %><% } %>
     <% if (attr.attrType == 'Enum') { %>@Enumerated(EnumType.STRING)<% } %>
     private <% if (attr.attrType == 'Enum') { %><%= _.capitalize(attr.attrName) %><% } %><%= attr.attrType %> <%= attr.attrName %>;
     <% }); %>
