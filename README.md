@@ -4,7 +4,7 @@ A [Yeoman](http://yeoman.io) generator for [AngularJS](http://angularjs.org) and
 
 ## Installation
 
-Install [node.js](http://nodejs.org).
+Install [Git](http://git-scm.com), [node.js](http://nodejs.org), and [Java](https://www.java.com).
 
 Install Yeoman:
 

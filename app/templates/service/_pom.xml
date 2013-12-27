@@ -14,11 +14,13 @@
     <name><%= _.capitalize(baseName) %> Service</name>
 
     <dependencies>
+        <!--
         <dependency>
             <groupId><%= packageName %></groupId>
             <artifactId><%= _.slugify(baseName) %>-api</artifactId>
             <version><%= _.unescape('\$\{project.version}')%></version>
         </dependency>
+        -->
         <dependency>
             <groupId>com.yammer.dropwizard</groupId>
             <artifactId>dropwizard-core</artifactId>

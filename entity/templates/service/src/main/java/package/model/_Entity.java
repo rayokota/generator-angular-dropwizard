@@ -1,6 +1,5 @@
 package <%= packageName %>.model;
 
-import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import org.joda.time.LocalDate;
@@ -43,11 +42,11 @@ public class <%= _.capitalize(name) %> {
         if (this == o) return true;
         if (!(o instanceof <%= _.capitalize(name) %>)) return false;
         <%= _.capitalize(name) %> that = (<%= _.capitalize(name) %>) o;
-        return Objects.equals(id, that.id);
+        return id == that.id;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return (int) (id ^ (id >>> 32));
     }
 }
