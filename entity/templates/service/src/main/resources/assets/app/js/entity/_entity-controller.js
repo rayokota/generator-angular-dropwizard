@@ -4,7 +4,7 @@ angular.module('<%= baseName %>')
   .controller('<%= _.capitalize(name) %>Controller', ['$scope', '$modal', 'resolved<%= _.capitalize(name) %>', '<%= _.capitalize(name) %>',
     function ($scope, $modal, resolved<%= _.capitalize(name) %>, <%= _.capitalize(name) %>) {
 
-      $scope.<%= name %>s = resolved<%= _.capitalize(name) %>;
+      $scope.<%= pluralize(name) %> = resolved<%= _.capitalize(name) %>;
 
       $scope.create = function () {
         $scope.clear();
@@ -19,7 +19,7 @@ angular.module('<%= baseName %>')
       $scope.delete = function (id) {
         <%= _.capitalize(name) %>.delete({id: id},
           function () {
-            $scope.<%= name %>s = <%= _.capitalize(name) %>.query();
+            $scope.<%= pluralize(name) %> = <%= _.capitalize(name) %>.query();
           });
       };
 
