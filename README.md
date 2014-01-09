@@ -43,6 +43,12 @@ You will be asked to specify methods for the resource, where each method has the
 - a URI path template, such as `/users/{userId}/orders/{orderId}`
 - for a POST method, an optional list of form parameters
 
+Files that are regenerated will appear as conflicts.  Allow the generator to overwrite these files as long as no custom changes have been made.
+
+Compile and rerun the service:
+
+    mvn compile && mvn exec:exec -pl [myapp]-service
+     
 You can now invoke HTTP requests against your service, such as
 
 	curl -X POST localhost:8080/myapp/myresource/users/1/orders/2 \
@@ -64,6 +70,10 @@ You will be asked to specify attributes for the entity, where each attribute has
 - for an Enum attribute, a list of enumerated values
 - whether the attribute is required
 
+Compile and rerun the service:
+
+    mvn compile && mvn exec:exec -pl [myapp]-service
+    
 A client-side AngularJS application will now be available by running
 
 	grunt server
