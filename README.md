@@ -47,7 +47,7 @@ Files that are regenerated will appear as conflicts.  Allow the generator to ove
 
 Compile and rerun the service:
 
-    mvn compile && mvn exec:exec -pl [myapp]-service
+    mvn compile exec:exec -pl [myapp]-service
      
 You can now invoke HTTP requests against your service, such as
 
@@ -72,7 +72,7 @@ You will be asked to specify attributes for the entity, where each attribute has
 
 Compile and rerun the service:
 
-    mvn compile && mvn exec:exec -pl [myapp]-service
+    mvn compile exec:exec -pl [myapp]-service
     
 A client-side AngularJS application will now be available by running
 
