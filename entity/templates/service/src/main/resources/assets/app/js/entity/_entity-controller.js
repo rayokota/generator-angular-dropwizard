@@ -13,7 +13,7 @@ angular.module('<%= baseName %>')
 
       $scope.update = function (id) {
         $scope.<%= name %> = <%= _.capitalize(name) %>.get({id: id});
-        $scope.open();
+        $scope.open(id);
       };
 
       $scope.delete = function (id) {
@@ -23,12 +23,20 @@ angular.module('<%= baseName %>')
           });
       };
 
-      $scope.save = function () {
-        <%= _.capitalize(name) %>.save($scope.<%= name %>,
+      $scope.save = function (id) {
+        if (id) {
+          <%= _.capitalize(name) %>.update({id: id}, $scope.<%= name %>,
             function () {
               $scope.<%= pluralize(name) %> = <%= _.capitalize(name) %>.query();
               $scope.clear();
             });
+        } else {
+          <%= _.capitalize(name) %>.save($scope.<%= name %>,
+            function () {
+              $scope.<%= pluralize(name) %> = <%= _.capitalize(name) %>.query();
+              $scope.clear();
+            });
+        }
       };
 
       $scope.clear = function () {
@@ -40,7 +48,7 @@ angular.module('<%= baseName %>')
         };
       };
 
-      $scope.open = function () {
+      $scope.open = function (id) {
         var <%= name %>Save = $modal.open({
           templateUrl: '<%= name %>-save.html',
           controller: <%= _.capitalize(name) %>SaveController,
@@ -53,7 +61,7 @@ angular.module('<%= baseName %>')
 
         <%= name %>Save.result.then(function (entity) {
           $scope.<%= name %> = entity;
-          $scope.save();
+          $scope.save(id);
         });
       };
     }]);
@@ -62,7 +70,7 @@ var <%= _.capitalize(name) %>SaveController =
   function ($scope, $modalInstance, <%= name %>) {
     $scope.<%= name %> = <%= name %>;
 
-    <% _.each(attrs, function (attr) { if (attr.attrType === 'LocalDate') { %>
+    <% _.each(attrs, function (attr) { if (attr.attrType === 'Date') { %>
     $scope.<%= attr.attrName %>DateOptions = {
       dateFormat: 'yy-mm-dd',
       <% if (attr.dateConstraint === 'Past') { %>maxDate: -1<% } %>

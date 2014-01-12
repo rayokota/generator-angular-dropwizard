@@ -52,6 +52,16 @@ public class <%= _.capitalize(name) %>DAO extends AbstractDAO<<%= _.capitalize(n
     }
 
     /**
+     * Merges the given {@link <%= _.capitalize(name) %>}.
+     *
+     * @param entity the entity to merge
+     * @return the persistent entity
+     */
+    public <%= _.capitalize(name) %> merge(<%= _.capitalize(name) %> entity) throws HibernateException {
+        return (<%= _.capitalize(name) %>) currentSession().merge(entity);
+    }
+
+    /**
      * Deletes the given {@link <%= _.capitalize(name) %>}.
      *
      * @param entity the entity to delete

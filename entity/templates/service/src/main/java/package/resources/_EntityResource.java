@@ -59,6 +59,20 @@ public class <%= _.capitalize(name) %>Resource {
         return entity.get();
     }
 
+    @PUT
+    @Path("{id}")
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Timed 
+    @UnitOfWork
+    public <%= _.capitalize(name) %> update(@PathParam("id") LongParam id, <%= _.capitalize(name) %> entity) {
+        Optional<<%= _.capitalize(name) %>> ent = dao.find(id.get());
+        if (!ent.isPresent()) {
+            throw new NotFoundException("<%= _.capitalize(name) %> " + id.get() + " not found");
+        }
+        return dao.merge(entity);
+    }
+
     @DELETE
     @Path("{id}")
     @Timed
