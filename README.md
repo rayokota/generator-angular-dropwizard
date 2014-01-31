@@ -2,7 +2,7 @@
 
 A [Yeoman](http://yeoman.io) generator for [AngularJS](http://angularjs.org) and [Dropwizard](http://dropwizard.codahale.com).
 
-Dropwizard is a Java-based micro-framework.  For AngularJS integration with a Ruby-based micro-framework, see the [Angular-Sinatra generator](https://github.com/rayokota/generator-angular-sinatra).
+Dropwizard is a Java-based micro-framework.  For AngularJS integration with other micro-frameworks, see https://github.com/rayokota/MicroFrameworkRosettaStone.
 
 ## Installation
 
