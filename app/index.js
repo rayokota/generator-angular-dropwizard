@@ -96,6 +96,7 @@ AngularDropwizardGenerator.prototype.app = function app() {
   this.mkdir(serviceStoreDir);
   this.template('service/_pom.xml', serviceDir + 'pom.xml');
   this.template('service/_app.yml', serviceDir + this.baseName + '.yml');
+  this.copy('service/spring_loaded/springloaded-1.1.3.jar', serviceDir + 'spring_loaded/springloaded-1.1.3.jar');
   this.copy('service/spring_loaded/springloaded-1.1.4.jar', serviceDir + 'spring_loaded/springloaded-1.1.4.jar');
   this.template('service/src/main/java/package/_AppService.java', serviceJavaDir + _s.capitalize(this.baseName) + 'Service.java');
   this.template('service/src/main/java/package/config/_AppConfiguration.java', serviceConfigDir + _s.capitalize(this.baseName) + 'Configuration.java');

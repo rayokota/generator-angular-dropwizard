@@ -6,7 +6,7 @@ Dropwizard is a Java-based micro-framework.  For AngularJS integration with othe
 
 ## Installation
 
-Install [Git](http://git-scm.com), [node.js](http://nodejs.org), and [Java](https://www.java.com).
+Install [Git](http://git-scm.com), [node.js](http://nodejs.org), [Maven](http://maven.apache.org/), and [Java 1.7](https://www.java.com).
 
 Install Yeoman:
 
@@ -22,9 +22,9 @@ In a new directory, generate the service:
 
     yo angular-dropwizard
 
-Compile the service:
+Package the service:
 
-    mvn compile
+    mvn package
 
 Run the service:
 
