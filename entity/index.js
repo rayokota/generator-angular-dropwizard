@@ -166,22 +166,22 @@ EntityGenerator.prototype.files = function files() {
 
   var serviceDir = this.baseName + '-service/';
   var serviceJavaDir = serviceDir + 'src/main/java/' + packageFolder + '/';
-  var serviceModelDir = serviceJavaDir + 'model/';
+  var serviceDaosDir = serviceJavaDir + 'daos/';
+  var serviceModelsDir = serviceJavaDir + 'models/';
   var serviceResourcesDir = serviceJavaDir + 'resources/';
-  var serviceStoreDir = serviceJavaDir + 'store/';
   var resourceDir = serviceDir + 'src/main/resources/';
   var assetsDir = resourceDir + 'assets/';
   var assetsAppDir = assetsDir + 'app/';
   this.template('../../app/templates/service/src/main/java/package/_AppService.java', serviceJavaDir + _s.capitalize(this.baseName) + 'Service.java');
   this.template('../../app/templates/service/src/main/resources/assets/app/_index.html', assetsAppDir + 'index.html');
 
-  this.template('service/src/main/java/package/model/_Entity.java', serviceModelDir + _s.capitalize(this.name) + '.java');
+  this.template('service/src/main/java/package/daos/_EntityDAO.java', serviceDaosDir + _s.capitalize(this.name) + 'DAO.java');
+  this.template('service/src/main/java/package/models/_Entity.java', serviceModelsDir + _s.capitalize(this.name) + '.java');
   this.template('service/src/main/java/package/resources/_EntityResource.java', serviceResourcesDir + _s.capitalize(this.name) + 'Resource.java');
-  this.template('service/src/main/java/package/store/_EntityDAO.java', serviceStoreDir + _s.capitalize(this.name) + 'DAO.java');
   _.each(this.attrs, function (attr) {
     if (attr.attrType === 'Enum') {
       this.attr = attr;
-      this.template('service/src/main/java/package/model/_AttrEnum.java', serviceModelDir + _s.capitalize(attr.attrName) + 'Enum.java');
+      this.template('service/src/main/java/package/models/_AttrEnum.java', serviceModelsDir + _s.capitalize(attr.attrName) + 'Enum.java');
     }
   }.bind(this));
 

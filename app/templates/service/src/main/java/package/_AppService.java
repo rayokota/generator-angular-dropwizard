@@ -1,9 +1,9 @@
 package <%= packageName %>;
 
 import <%= packageName %>.config.*;
-<% if (entities.length > 0) { %>import <%= packageName %>.model.*;<% } %>
+<% if (entities.length > 0) { %>import <%= packageName %>.daos.*;<% } %>
+<% if (entities.length > 0) { %>import <%= packageName %>.models.*;<% } %>
 <% if (entities.length > 0 || resources.length > 0) { %>import <%= packageName %>.resources.*;<% } %>
-<% if (entities.length > 0) { %>import <%= packageName %>.store.*;<% } %>
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.google.common.base.Optional;
 import com.yammer.dropwizard.assets.AssetsBundle;

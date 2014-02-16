@@ -1,7 +1,7 @@
 package <%= packageName %>.resources;
 
-import <%= packageName %>.model.<%= _.capitalize(name) %>;
-import <%= packageName %>.store.<%= _.capitalize(name) %>DAO;
+import <%= packageName %>.daos.<%= _.capitalize(name) %>DAO;
+import <%= packageName %>.models.<%= _.capitalize(name) %>;
 import com.google.common.base.Optional;
 import com.sun.jersey.api.NotFoundException;
 import com.yammer.dropwizard.hibernate.UnitOfWork;

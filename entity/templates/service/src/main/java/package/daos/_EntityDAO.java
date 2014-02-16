@@ -1,8 +1,8 @@
-package <%= packageName %>.store;
+package <%= packageName %>.daos;
 
 import com.google.common.base.Optional;
 import com.yammer.dropwizard.hibernate.AbstractDAO;
-import <%= packageName %>.model.<%= _.capitalize(name) %>;
+import <%= packageName %>.models.<%= _.capitalize(name) %>;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 

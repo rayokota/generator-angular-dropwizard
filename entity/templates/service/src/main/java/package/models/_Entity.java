@@ -1,4 +1,4 @@
-package <%= packageName %>.model;
+package <%= packageName %>.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
