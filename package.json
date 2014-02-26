@@ -8,7 +8,7 @@
     "Dropwizard",
     "Hibernate",
     "AngularJS",
-    "Twitter Bootstrap"
+    "Bootstrap"
   ],
   "homepage": "https://github.com/rayokota/generator-angular-dropwizard",
   "bugs": "https://github.com/rayokota/generator-angular-dropwizard/issues",
