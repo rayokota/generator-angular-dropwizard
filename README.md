@@ -16,6 +16,8 @@ Install the Angular-Dropwizard generator:
 
     npm install -g generator-angular-dropwizard
 
+The above prerequisites can be installed to a VM using the [Angular-Dropwizard provisioner](https://github.com/rayokota/provision-angular-dropwizard).
+
 ## Creating a Dropwizard service
 
 In a new directory, generate the service:
