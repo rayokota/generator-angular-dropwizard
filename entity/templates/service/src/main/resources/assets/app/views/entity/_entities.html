@@ -30,13 +30,13 @@
                                    <% if (attr.minLength) { %>ng-minlength=<%= attr.minLength %> <% } %><% if (attr.maxLength) { %>ng-maxlength=<%= attr.maxLength %><% } %>/>
                             <span class="error" ng-show="form.<%= attr.attrName %>.$error.minlength">Must be at least <%= attr.minLength %> characters.</span>
                             <span class="error" ng-show="form.<%= attr.attrName %>.$error.maxlength">Must be at most <%= attr.maxLength %> characters.</span><%
-                               } else if (attr.attrType === "Integer") { %>
+                               } else if (attr.attrType === "Integer" || attr.attrType === "Long") { %>
                             <input type="number" class="form-control" name="<%= attr.attrName %>"
                                    ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"
                                    <% if (attr.min) { %>min=<%= attr.min%> <% } %><% if (attr.max) { %>max=<%= attr.max %><% } %>/>
                             <span class="error" ng-show="form.<%= attr.attrName %>.$error.min">Must be greater than or equal to <%= attr.min %>.</span>
                             <span class="error" ng-show="form.<%= attr.attrName %>.$error.max">Must be less than or equal to <%= attr.max %>.</span><%
-                               } else if (attr.attrType === "Float") { %>
+                               } else if (attr.attrType === "Float" || attr.attrType === "Double") { %>
                             <input type="number" step="any" class="form-control" name="<%= attr.attrName %>"
                                    ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"
                                    <% if (attr.min) { %>min=<%= attr.min%> <% } %><% if (attr.max) { %>max=<%= attr.max %><% } %>/>
@@ -45,7 +45,7 @@
                                } else if (attr.attrType === "Boolean") { %>
                             <input type="checkbox" name="<%= attr.attrName %>"
                                    ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
-                               } else if (attr.attrType === "Date") { %>
+                               } else if (attr.attrType === "LocalDate") { %>
                             <input type="text" class="form-control" name="<%= attr.attrName %>" ui-date="<%= attr.attrName %>DateOptions" ui-date-format="yy-mm-dd" 
                                    ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
                                } else if (attr.attrType === "Enum") {
@@ -84,7 +84,7 @@
             <tr ng-repeat="<%= name %> in <%= pluralize(name) %>">
                 <td>{{<%= name %>.id}}</td>
                 <% _.each(attrs, function (attr) { %>
-                <td>{{<%= name %>.<%= attr.attrName %> <% if (attr.attrType === 'Date') { %> | date:'yyyy-MM-dd'<% } %>}}</td>
+                <td>{{<%= name %>.<%= attr.attrName %> <% if (attr.attrType === 'LocalDate') { %> | date:'yyyy-MM-dd'<% } %>}}</td>
                 <% }); %>
                 <td>
                     <button type="submit"
