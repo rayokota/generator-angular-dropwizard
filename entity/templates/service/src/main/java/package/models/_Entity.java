@@ -20,7 +20,7 @@ public class <%= _.capitalize(name) %> {
     <% if (attr.max) { %>@Max(value = <%= attr.max %>)<% } %>
     <% if (attr.dateConstraint) { %>@<%= attr.dateConstraint %><% } %>
     <% if (attr.attrType == 'Enum') { %>@Enumerated(EnumType.STRING)<% } %>
-    private <% if (attr.attrType == 'Enum') { %><%= _.capitalize(attr.attrName) %><% } %><%= attr.attrType %> <%= attr.attrName %>;
+    private <% if (attr.attrType == 'Enum') { %><%= _.capitalize(attr.attrName) %><% } else if (attr.attrType == 'Date') { %>Local<% }; %><%= attr.attrType %> <%= attr.attrName %>;
     <% }); %>
 
     public long getId() {
@@ -28,11 +28,11 @@ public class <%= _.capitalize(name) %> {
     }
 
     <% _.each(attrs, function (attr) { %>
-    public <% if (attr.attrType === 'Enum') { %><%= _.capitalize(attr.attrName) %><% } %><%= attr.attrType %> get<%= _.capitalize(attr.attrName) %>() {
+    public <% if (attr.attrType === 'Enum') { %><%= _.capitalize(attr.attrName) %><% } else if (attr.attrType == 'Date') { %>Local<% }; %><%= attr.attrType %> get<%= _.capitalize(attr.attrName) %>() {
         return <%= attr.attrName %>;
     }
 
-    public void set<%= _.capitalize(attr.attrName) %>(<% if (attr.attrType == 'Enum') { %><%= _.capitalize(attr.attrName) %><% } %><%= attr.attrType %> <%= attr.attrName %>) {
+    public void set<%= _.capitalize(attr.attrName) %>(<% if (attr.attrType == 'Enum') { %><%= _.capitalize(attr.attrName) %><% } else if (attr.attrType == 'Date') { %>Local<% }; %><%= attr.attrType %> <%= attr.attrName %>) {
         this.<%= attr.attrName %> = <%= attr.attrName %>;
     }
     <% }); %>

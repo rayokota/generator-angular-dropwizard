@@ -45,7 +45,7 @@
                                } else if (attr.attrType === "Boolean") { %>
                             <input type="checkbox" name="<%= attr.attrName %>"
                                    ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
-                               } else if (attr.attrType === "LocalDate") { %>
+                               } else if (attr.attrType === "Date") { %>
                             <input type="text" class="form-control" name="<%= attr.attrName %>" ui-date="<%= attr.attrName %>DateOptions" ui-date-format="yy-mm-dd" 
                                    ng-model="<%= name %>.<%= attr.attrName %>" ng-required="<%= attr.required %>"/><%
                                } else if (attr.attrType === "Enum") {
@@ -84,7 +84,7 @@
             <tr ng-repeat="<%= name %> in <%= pluralize(name) %>">
                 <td>{{<%= name %>.id}}</td>
                 <% _.each(attrs, function (attr) { %>
-                <td>{{<%= name %>.<%= attr.attrName %> <% if (attr.attrType === 'LocalDate') { %> | date:'yyyy-MM-dd'<% } %>}}</td>
+                <td>{{<%= name %>.<%= attr.attrName %> <% if (attr.attrType === 'Date') { %> | date:'yyyy-MM-dd'<% } %>}}</td>
                 <% }); %>
                 <td>
                     <button type="submit"

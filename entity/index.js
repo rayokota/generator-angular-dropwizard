@@ -125,9 +125,6 @@ EntityGenerator.prototype.askFor = function askFor() {
   this.prompt(prompts, function (props) {
     this.attrs = this.attrs || [];
     var attrType = props.attrType;
-    if (attrType === 'Date') {
-      attrType = 'Local' + attrType;
-    }
     this.attrs = _.reject(this.attrs, function (attr) { return attr.attrName === props.attrName; });
     this.attrs.push({ 
       attrName: props.attrName, 
