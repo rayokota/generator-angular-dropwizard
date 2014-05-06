@@ -20,16 +20,16 @@
     </modules>
 
     <properties>
-        <dropwizard.version>0.6.2</dropwizard.version>
-        <hibernate.version>4.2.8.Final</hibernate.version>
+        <dropwizard.version>0.7.0</dropwizard.version>
+        <hibernate.version>4.3.1.Final</hibernate.version>
         <jackson.version>2.3.0</jackson.version>
-        <powermock.version>1.5.2</powermock.version>
+        <powermock.version>1.5.4</powermock.version>
     </properties>
 
     <!-- STOPPED HERE -->
     <dependencies>
         <dependency>
-            <groupId>com.yammer.dropwizard</groupId>
+            <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-testing</artifactId>
             <version><%= _.unescape('\$\{dropwizard.version}')%></version>
             <scope>test</scope>

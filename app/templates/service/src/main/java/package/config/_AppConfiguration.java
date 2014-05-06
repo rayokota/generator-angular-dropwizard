@@ -1,8 +1,8 @@
 package <%= packageName %>.config;
 
-import com.yammer.dropwizard.config.Configuration;
-import com.yammer.dropwizard.db.DatabaseConfiguration;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.dropwizard.Configuration;
+import io.dropwizard.db.DataSourceFactory;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
@@ -15,17 +15,17 @@ public class <%= _.capitalize(baseName) %>Configuration extends Configuration {
     @Valid
     @NotNull
     @JsonProperty
-    private DatabaseConfiguration database = new DatabaseConfiguration();
+    private DataSourceFactory database = new DataSourceFactory();
 
     public String getSampleProperty() {
         return sampleProperty;
     }
 
-    public DatabaseConfiguration getDatabaseConfiguration() {
+    public DataSourceFactory getDataSourceFactory() {
         return database;
     }
 
-    public void setDatabaseConfiguration(DatabaseConfiguration database) {
+    public void setDataSourceFactory(DataSourceFactory database) {
         this.database = database;
     }
 }

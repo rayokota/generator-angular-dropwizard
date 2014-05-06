@@ -20,7 +20,7 @@
             <version><%= _.unescape('\$\{project.version}')%></version>
         </dependency>
         <dependency>
-            <groupId>com.yammer.dropwizard</groupId>
+            <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-client</artifactId>
             <version><%= _.unescape('\$\{dropwizard.version}')%></version>
         </dependency>

@@ -1,10 +1,10 @@
 package <%= packageName %>.resources;
 
-import com.yammer.dropwizard.jersey.params.BooleanParam;
-import com.yammer.dropwizard.jersey.params.DateTimeParam;
-import com.yammer.dropwizard.jersey.params.IntParam;
-import com.yammer.dropwizard.jersey.params.LongParam;
-import com.yammer.metrics.annotation.Timed;
+import com.codahale.metrics.annotation.Timed;
+import io.dropwizard.jersey.params.BooleanParam;
+import io.dropwizard.jersey.params.DateTimeParam;
+import io.dropwizard.jersey.params.IntParam;
+import io.dropwizard.jersey.params.LongParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,10 +1,11 @@
 package <%= packageName %>.client;
 
+import com.codahale.metrics.MetricRegistry;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jersey.api.client.Client;
-import com.yammer.dropwizard.client.JerseyClientBuilder;
-import com.yammer.dropwizard.client.JerseyClientConfiguration;
-import com.yammer.dropwizard.json.ObjectMapperFactory;
-import com.yammer.dropwizard.util.Duration;
+import io.dropwizard.client.JerseyClientBuilder;
+import io.dropwizard.client.JerseyClientConfiguration;
+import io.dropwizard.util.Duration;
 
 import java.net.URI;
 import java.util.concurrent.Executors;
@@ -44,10 +45,10 @@ public class <%= _.capitalize(baseName) %>Client {
         jerseyConfig.setTimeout(Duration.hours(1));
         jerseyConfig.setTimeToLive(Duration.minutes(5));
 
-        final JerseyClientBuilder builder = clientBuilder != null ? clientBuilder : new JerseyClientBuilder();
+        final JerseyClientBuilder builder = clientBuilder != null ? clientBuilder : new JerseyClientBuilder(new MetricRegistry());
 
         return builder
-            .using(Executors.newSingleThreadExecutor(), new ObjectMapperFactory().build())
-            .using(jerseyConfig).build();
+            .using(Executors.newSingleThreadExecutor(), new ObjectMapper())
+            .using(jerseyConfig).build("<%= baseName %>Client");
     }
 }
