@@ -1,4 +1,4 @@
 {
-    "directory": "<%= baseName %>-service/src/main/resources/assets/app/lib",
+    "directory": "<%= baseName %>-application/src/main/resources/assets/app/lib",
     "json": "bower.json"
 }

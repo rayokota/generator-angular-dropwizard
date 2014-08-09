@@ -99,10 +99,10 @@ ResourceGenerator.prototype.files = function files() {
   var packageFolder = this.packageName.replace(/\./g, '/');
   this.template('_generator.json', 'generator.json');
 
-  var serviceDir = this.baseName + '-service/';
-  var serviceJavaDir = serviceDir + 'src/main/java/' + packageFolder + '/';
-  var serviceResourcesDir = serviceJavaDir + 'resources/';
-  this.template('../../app/templates/service/src/main/java/package/_AppService.java', serviceJavaDir + _s.capitalize(this.baseName) + 'Service.java');
+  var applicationDir = this.baseName + '-application/';
+  var applicationJavaDir = applicationDir + 'src/main/java/' + packageFolder + '/';
+  var applicationResourcesDir = applicationJavaDir + 'resources/';
+  this.template('../../app/templates/application/src/main/java/package/_AppApplication.java', applicationJavaDir + _s.capitalize(this.baseName) + 'Application.java');
 
-  this.template('service/src/main/java/package/resources/_AppResource.java', serviceResourcesDir + _s.capitalize(this.name) + 'Resource.java');
+  this.template('application/src/main/java/package/resources/_AppResource.java', applicationResourcesDir + _s.capitalize(this.name) + 'Resource.java');
 };

@@ -16,7 +16,7 @@
     <modules>
         <module><%= _.slugify(baseName) %>-api</module>
         <module><%= _.slugify(baseName) %>-client</module>
-        <module><%= _.slugify(baseName) %>-service</module>
+        <module><%= _.slugify(baseName) %>-application</module>
     </modules>
 
     <properties>

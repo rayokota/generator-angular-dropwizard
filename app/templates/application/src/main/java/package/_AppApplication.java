@@ -21,11 +21,11 @@ import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class <%= _.capitalize(baseName) %>Service extends Application<<%= _.capitalize(baseName) %>Configuration> {
-    private static final Logger LOG = LoggerFactory.getLogger(<%= _.capitalize(baseName)  %>Service.class);
+public class <%= _.capitalize(baseName) %>Application extends Application<<%= _.capitalize(baseName) %>Configuration> {
+    private static final Logger LOG = LoggerFactory.getLogger(<%= _.capitalize(baseName)  %>Application.class);
 
     public static void main(String[] args) throws Exception {
-        new <%= _.capitalize(baseName)  %>Service().run(args);
+        new <%= _.capitalize(baseName)  %>Application().run(args);
     }
 
     private final HibernateBundle<<%= _.capitalize(baseName) %>Configuration> hibernateBundle = new HibernateBundle<<%= _.capitalize(baseName) %>Configuration>(

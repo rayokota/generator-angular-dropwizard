@@ -1,4 +1,4 @@
-# The Angular-Dropwizard generator 
+# The Angular-Dropwizard generator
 
 A [Yeoman](http://yeoman.io) generator for [AngularJS](http://angularjs.org) and [Dropwizard](http://dropwizard.codahale.com).
 
@@ -30,7 +30,7 @@ Compile the service:
 
 Run the service:
 
-    mvn exec:exec -pl [myapp]-service
+    mvn exec:exec -pl [myapp]-application
 
 Your service will run at [http://localhost:8080](http://localhost:8080).  You will get an error that no root resource classes are running.  It's time to create some resources.
 
@@ -52,7 +52,7 @@ Files that are regenerated will appear as conflicts.  Allow the generator to ove
 Compile and rerun the service:
 
     mvn compile exec:exec -pl [myapp]-service
-     
+
 You can now invoke HTTP requests against your service, such as
 
 	curl -X POST localhost:8080/myapp/myresource/users/1/orders/2 \
@@ -77,14 +77,13 @@ You will be asked to specify attributes for the entity, where each attribute has
 Compile and rerun the service:
 
     mvn compile exec:exec -pl [myapp]-service
-    
+
 A client-side AngularJS application will now be available by running
 
 	grunt server
-	
+
 The Grunt server will run at [http://localhost:9000](http://localhost:9000).  It will proxy REST requests to the Dropwizard service running at [http://localhost:8080](http://localhost:8080).
 
 At this point you should be able to navigate to a page to manage your persistent entities.  
 
 The Grunt server supports hot reloading of client-side HTML/CSS/Javascript file changes, while the Dropwizard service supports hot reloading of Java class file changes.
-

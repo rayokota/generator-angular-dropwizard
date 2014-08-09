@@ -161,28 +161,28 @@ EntityGenerator.prototype.files = function files() {
   var packageFolder = this.packageName.replace(/\./g, '/');
   this.template('_generator.json', 'generator.json');
 
-  var serviceDir = this.baseName + '-service/';
-  var serviceJavaDir = serviceDir + 'src/main/java/' + packageFolder + '/';
-  var serviceDaosDir = serviceJavaDir + 'daos/';
-  var serviceModelsDir = serviceJavaDir + 'models/';
-  var serviceResourcesDir = serviceJavaDir + 'resources/';
-  var resourceDir = serviceDir + 'src/main/resources/';
+  var applicationDir = this.baseName + '-application/';
+  var applicationJavaDir = applicationDir + 'src/main/java/' + packageFolder + '/';
+  var applicationDaosDir = applicationJavaDir + 'daos/';
+  var applicationModelsDir = applicationJavaDir + 'models/';
+  var applicationResourcesDir = applicationJavaDir + 'resources/';
+  var resourceDir = applicationDir + 'src/main/resources/';
   var assetsDir = resourceDir + 'assets/';
   var assetsAppDir = assetsDir + 'app/';
-  this.template('../../app/templates/service/src/main/java/package/_AppService.java', serviceJavaDir + _s.capitalize(this.baseName) + 'Service.java');
-  this.template('../../app/templates/service/src/main/resources/assets/app/_index.html', assetsAppDir + 'index.html');
+  this.template('../../app/templates/application/src/main/java/package/_AppApplication.java', applicationJavaDir + _s.capitalize(this.baseName) + 'Application.java');
+  this.template('../../app/templates/application/src/main/resources/assets/app/_index.html', assetsAppDir + 'index.html');
 
-  this.template('service/src/main/java/package/daos/_EntityDAO.java', serviceDaosDir + _s.capitalize(this.name) + 'DAO.java');
-  this.template('service/src/main/java/package/models/_Entity.java', serviceModelsDir + _s.capitalize(this.name) + '.java');
-  this.template('service/src/main/java/package/resources/_EntityResource.java', serviceResourcesDir + _s.capitalize(this.name) + 'Resource.java');
+  this.template('application/src/main/java/package/daos/_EntityDAO.java', applicationDaosDir + _s.capitalize(this.name) + 'DAO.java');
+  this.template('application/src/main/java/package/models/_Entity.java', applicationModelsDir + _s.capitalize(this.name) + '.java');
+  this.template('application/src/main/java/package/resources/_EntityResource.java', applicationResourcesDir + _s.capitalize(this.name) + 'Resource.java');
   _.each(this.attrs, function (attr) {
     if (attr.attrType === 'Enum') {
       this.attr = attr;
-      this.template('service/src/main/java/package/models/_AttrEnum.java', serviceModelsDir + _s.capitalize(attr.attrName) + 'Enum.java');
+      this.template('application/src/main/java/package/models/_AttrEnum.java', applicationModelsDir + _s.capitalize(attr.attrName) + 'Enum.java');
     }
   }.bind(this));
 
-  var resourceDir = serviceDir + 'src/main/resources/';
+  var resourceDir = applicationDir + 'src/main/resources/';
   var assetsDir = resourceDir + 'assets/';
   var assetsAppDir = assetsDir + 'app/';
   var assetsAppJsDir = assetsAppDir + 'js/';
@@ -191,8 +191,8 @@ EntityGenerator.prototype.files = function files() {
   var assetsEntityViewDir = assetsAppViewDir + this.name + '/';
   this.mkdir(assetsEntityJsDir);
   this.mkdir(assetsEntityViewDir);
-  this.template('service/src/main/resources/assets/app/js/entity/_entity-controller.js', assetsEntityJsDir + this.name + '-controller.js');
-  this.template('service/src/main/resources/assets/app/js/entity/_entity-router.js', assetsEntityJsDir + this.name + '-router.js');
-  this.template('service/src/main/resources/assets/app/js/entity/_entity-service.js', assetsEntityJsDir + this.name + '-service.js');
-  this.template('service/src/main/resources/assets/app/views/entity/_entities.html', assetsEntityViewDir + pluralize(this.name) + '.html');
+  this.template('application/src/main/resources/assets/app/js/entity/_entity-controller.js', assetsEntityJsDir + this.name + '-controller.js');
+  this.template('application/src/main/resources/assets/app/js/entity/_entity-router.js', assetsEntityJsDir + this.name + '-router.js');
+  this.template('application/src/main/resources/assets/app/js/entity/_entity-application.js', assetsEntityJsDir + this.name + '-application.js');
+  this.template('application/src/main/resources/assets/app/views/entity/_entities.html', assetsEntityViewDir + pluralize(this.name) + '.html');
 };
