@@ -72,7 +72,7 @@ AngularDropwizardGenerator.prototype.app = function app() {
   var packageFolder = this.packageName.replace(/\./g, '/');
   this.copy('findbugs-exclude.xml', 'findbugs-exclude.xml');
   this.template('_pom.xml', 'pom.xml');
-  
+
   var apiDir = this.baseName + '-api/';
   this.mkdir(apiDir);
   this.template('api/_pom.xml', apiDir + 'pom.xml');
@@ -83,25 +83,25 @@ AngularDropwizardGenerator.prototype.app = function app() {
   this.template('client/_pom.xml', clientDir + 'pom.xml');
   this.template('client/src/main/java/package/client/_AppClient.java', clientJavaDir + _s.capitalize(this.baseName) + 'Client.java');
 
-  var serviceDir = this.baseName + '-service/';
-  var serviceJavaDir = serviceDir + 'src/main/java/' + packageFolder + '/';
-  var serviceConfigDir = serviceJavaDir + 'config/';
-  var serviceDaosDir = serviceJavaDir + 'daos/';
-  var serviceModelsDir = serviceJavaDir + 'models/';
-  var serviceResourcesDir = serviceJavaDir + 'resources/';
-  this.mkdir(serviceJavaDir);
-  this.mkdir(serviceConfigDir);
-  this.mkdir(serviceDaosDir);
-  this.mkdir(serviceModelsDir);
-  this.mkdir(serviceResourcesDir);
-  this.template('service/_pom.xml', serviceDir + 'pom.xml');
-  this.template('service/_app.yml', serviceDir + this.baseName + '.yml');
-  this.copy('service/spring_loaded/springloaded-1.1.3.jar', serviceDir + 'spring_loaded/springloaded-1.1.3.jar');
-  this.copy('service/spring_loaded/springloaded-1.1.4.jar', serviceDir + 'spring_loaded/springloaded-1.1.4.jar');
-  this.template('service/src/main/java/package/_AppService.java', serviceJavaDir + _s.capitalize(this.baseName) + 'Service.java');
-  this.template('service/src/main/java/package/config/_AppConfiguration.java', serviceConfigDir + _s.capitalize(this.baseName) + 'Configuration.java');
+  var applicationDir = this.baseName + '-application/';
+  var applicationJavaDir = applicationDir + 'src/main/java/' + packageFolder + '/';
+  var applicationConfigDir = applicationJavaDir + 'config/';
+  var applicationDaosDir = applicationJavaDir + 'daos/';
+  var applicationModelsDir = applicationJavaDir + 'models/';
+  var applicationResourcesDir = applicationJavaDir + 'resources/';
+  this.mkdir(applicationJavaDir);
+  this.mkdir(applicationConfigDir);
+  this.mkdir(applicationDaosDir);
+  this.mkdir(applicationModelsDir);
+  this.mkdir(applicationResourcesDir);
+  this.template('application/_pom.xml', applicationDir + 'pom.xml');
+  this.template('application/_app.yml', applicationDir + this.baseName + '.yml');
+  this.copy('application/spring_loaded/springloaded-1.1.3.jar', applicationDir + 'spring_loaded/springloaded-1.1.3.jar');
+  this.copy('application/spring_loaded/springloaded-1.1.4.jar', applicationDir + 'spring_loaded/springloaded-1.1.4.jar');
+  this.template('application/src/main/java/package/_AppApplication.java', applicationJavaDir + _s.capitalize(this.baseName) + 'Application.java');
+  this.template('application/src/main/java/package/config/_AppConfiguration.java', applicationConfigDir + _s.capitalize(this.baseName) + 'Configuration.java');
 
-  var resourceDir = serviceDir + 'src/main/resources/';
+  var resourceDir = applicationDir + 'src/main/resources/';
   var assetsDir = resourceDir + 'assets/';
   var assetsAppDir = assetsDir + 'app/';
   var assetsAppCssDir = assetsAppDir + 'css/';
@@ -120,17 +120,17 @@ AngularDropwizardGenerator.prototype.app = function app() {
   this.mkdir(assetsTestDir);
   this.mkdir(assetsTestE2EDir);
   this.mkdir(assetsTestUnitDir);
-  this.template('service/src/main/resources/assets/app/_index.html', assetsAppDir + 'index.html');
-  this.copy('service/src/main/resources/assets/app/css/app.css', assetsAppCssDir + 'app.css');
-  this.template('service/src/main/resources/assets/app/js/_app.js', assetsAppJsDir + 'app.js');
-  this.template('service/src/main/resources/assets/app/js/home/_home-controller.js', assetsAppJsDir + 'home/home-controller.js');
-  this.template('service/src/main/resources/assets/app/views/home/_home.html', assetsAppViewDir + 'home/home.html');
+  this.template('application/src/main/resources/assets/app/_index.html', assetsAppDir + 'index.html');
+  this.copy('application/src/main/resources/assets/app/css/app.css', assetsAppCssDir + 'app.css');
+  this.template('application/src/main/resources/assets/app/js/_app.js', assetsAppJsDir + 'app.js');
+  this.template('application/src/main/resources/assets/app/js/home/_home-controller.js', assetsAppJsDir + 'home/home-controller.js');
+  this.template('application/src/main/resources/assets/app/views/home/_home.html', assetsAppViewDir + 'home/home.html');
 
   var cb = this.async();
 
   asciify(this.baseName, function (err, res) {
     this.banner = res;
-    this.template('service/src/main/resources/_banner.txt', resourceDir + 'banner.txt');
+    this.template('application/src/main/resources/_banner.txt', resourceDir + 'banner.txt');
 
     cb();
   }.bind(this));
