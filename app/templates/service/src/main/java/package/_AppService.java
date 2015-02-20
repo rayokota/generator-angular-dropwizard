@@ -56,6 +56,7 @@ public class <%= _.capitalize(baseName) %>Service extends Application<<%= _.capi
     public void run(<%= _.capitalize(baseName) %>Configuration configuration,
                     Environment environment) throws Exception {
         environment.jersey().setUrlPattern("/<%= baseName %>/*");
+        <% if (entities.length == 0 && resources.length == 0) { %>environment.jersey().disable();<% } %>
         <% _.each(resources, function (resource) { %>
         environment.jersey().register(new <%= _.capitalize(resource.name) %>Resource());<% }); %>
         <% _.each(entities, function (entity) { %>

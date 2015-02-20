@@ -1,6 +1,6 @@
 {
   "name": "generator-angular-dropwizard",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "A Yeoman generator for AngularJS + Dropwizard",
   "keywords": [
     "yeoman-generator",

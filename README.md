@@ -32,7 +32,7 @@ Run the service:
 
     mvn exec:exec -pl [myapp]-service
 
-Your service will run at [http://localhost:8080](http://localhost:8080).  You will get an error that no root resource classes are running.  It's time to create some resources.
+Your service will run at [http://localhost:8080](http://localhost:8080).  It's time to create some resources.
 
 ## Creating a resource class
 
