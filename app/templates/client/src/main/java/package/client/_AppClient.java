@@ -2,7 +2,7 @@ package <%= packageName %>.client;
 
 import com.codahale.metrics.MetricRegistry;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sun.jersey.api.client.Client;
+import javax.ws.rs.client.Client;
 import io.dropwizard.client.JerseyClientBuilder;
 import io.dropwizard.client.JerseyClientConfiguration;
 import io.dropwizard.util.Duration;
@@ -29,7 +29,7 @@ public class <%= _.capitalize(baseName) %>Client {
     }
 
     public String getExample() {
-        return getClient().resource(root).path("/v1/example/yo").queryParam("bar", "dude").get(String.class);
+        return getClient().target(root).path("/v1/example/yo").queryParam("bar", "dude").request().get(String.class);
     }
 
     private Client getClient() {

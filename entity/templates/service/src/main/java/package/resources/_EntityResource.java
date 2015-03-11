@@ -4,7 +4,7 @@ import <%= packageName %>.daos.<%= _.capitalize(name) %>DAO;
 import <%= packageName %>.models.<%= _.capitalize(name) %>;
 import com.codahale.metrics.annotation.Timed;
 import com.google.common.base.Optional;
-import com.sun.jersey.api.NotFoundException;
+import javax.ws.rs.NotFoundException;
 import io.dropwizard.hibernate.UnitOfWork;
 import io.dropwizard.jersey.params.BooleanParam;
 import io.dropwizard.jersey.params.DateTimeParam;

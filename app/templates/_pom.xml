@@ -20,7 +20,7 @@
     </modules>
 
     <properties>
-        <dropwizard.version>0.7.0</dropwizard.version>
+        <dropwizard.version>0.8.0</dropwizard.version>
         <hibernate.version>4.3.1.Final</hibernate.version>
         <jackson.version>2.3.0</jackson.version>
         <powermock.version>1.5.4</powermock.version>
